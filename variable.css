@@ -1,0 +1,12 @@
+:root{
+  --primary-color: #1E3A8A;
+  --secondary-color: #2563EB;
+  --background-color: #F8FAFC;
+  --surface-color: #FFFFFF;
+  --text-color: #111827;
+  --heading-color: #111827;
+  
+  --section-padding: 6rem;
+  --card-radius: 2rem;
+  --shadow: 0 10px 30px rgba(15,23,42,.08);
+}

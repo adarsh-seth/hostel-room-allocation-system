@@ -1,0 +1,13 @@
+.container{
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background:#F8FAFC;
+}
