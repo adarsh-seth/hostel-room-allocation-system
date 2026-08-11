@@ -43,14 +43,17 @@
                 <div class="form-group">
                     <label for="roll-number">Roll Number </label>
                     <input type="text" id="roll-number" name="rollNumber" required>
+                    <span class="input-error roll-error"></span>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
+                    <span class="input-error email-error"></span>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone</label>
                     <input type="tel" id="phone" name="phone" required>
+                    <span class="input-error phone-error"></span>
                 </div>
 
                 <div class="gender-group">
@@ -179,7 +182,7 @@
             </section>
 
 
-            <section class="form-section">
+            <section class="form-section" id="roommate-section">
 
                 <h2>Roommate Preference</h2>
                 <p id="room-heading">Roommate preference is available for students from 2nd year onwards.</p>
@@ -188,6 +191,7 @@
                     <label for="roommate-roll">Roommate Roll No</label>
                     <input type="text" id="roommate-roll" name="roommateRoll"
                         placeholder="Enter roommate's roll number">
+                    <span class="input-error roommate-error"></span>
                 </div>
             </section>
 
@@ -228,8 +232,54 @@
             <button type="submit" class="btn">
                 Submit Application
             </button>
+            <p class="success-message" id="success-message">
+                Application submitted successfully!
+            </p>
 
         </form>
+        <!-- <section class="application-summary" id="application-summary">
+            <h2>Application Summary</h2>
+            <div class="summary-group">
+                <h3>Personal Information</h3>
+
+                <p>Full Name: <span id="summary-name"></span></p>
+                <p>Roll Number: <span id="summary-roll"></span></p>
+                <p>Email: <span id="summary-email"></span></p>
+                <p>Phone: <span id="summary-phone"></span></p>
+                <p>Gender: <span id="summary-gender"></span></p>
+
+            </div>
+            <div class="summary-group">
+                <h3>Academic Information</h3>
+
+                <p>Branch: <span id="summary-branch"></span></p>
+                <p>Year: <span id="summary-year"></span></p>
+                <p>Semester: <span id="summary-semester"></span></p>
+                <p>Academic Year: <span id="summary-academic-year"></span></p>
+
+            </div>
+            <div class="summary-group">
+                <h3>Accommodation Details</h3>
+
+                <p>Hostel Preference: <span id="summary-hostel"></span></p>
+                <p>Room Preference: <span id="summary-room"></span></p>
+                <p>Additional Requirements:
+                    <span id="summary-requirements"></span>
+                </p>
+                <p>Roommate Roll Number:
+                    <span id="summary-roommate"></span>
+                </p>
+
+            </div>
+            <div class="summary-group">
+                <h3>Fee Details</h3>
+
+                <p>Fee Status: <span id="summary-fee-status"></span></p>
+                <p>Receipt Number: <span id="summary-receipt"></span></p>
+
+            </div>
+
+        </section> -->
     </main>
     <footer class="footer">
         <div class="container">
@@ -264,6 +314,8 @@
 
         </div>
     </footer>
+
+    <script src="../apply.js"></script>
 </body>
 
 </html>
