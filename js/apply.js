@@ -142,20 +142,31 @@ rollNo.addEventListener("blur", validateRollNumber)
 const form = document.querySelector(".application-form");
 const successMessage = document.getElementById('success-message');
 
+
+
+console.log(applicationId);
+
 form.addEventListener("submit", (event) => {
     if (!validateRollNumber() || !validatePhoneNumber() || !validateEmail() || !validateRoommateRollNumber()) {
         event.preventDefault()
     }
     else {
         event.preventDefault(); // because we have not implemented backend yet
-        successMessage.style.display = "block";
+        
         const formData = new FormData(form);
+        const uuid = crypto.randomUUID();
+        const shortID = uuid.slice(0, 6).toUpperCase();
+        const applicationId = `HH-${new Date().getFullYear()}-${shortID}`;
         const applicationData = Object.fromEntries(formData)
+        applicationData.applicationId = applicationId;
+        console.log(applicationData);
+
 
         localStorage.setItem(
             "hostelApplication",
             JSON.stringify(applicationData)
         )
+        successMessage.style.display = "block";
 
         // We will use it later to show application summary 
         /*  const applicationSummary = document.getElementById('application-summary')

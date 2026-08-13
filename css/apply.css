@@ -154,3 +154,8 @@ main {
 .application-summary {
     display: none;
 }
+
+.success-message{
+    display: none;
+    text-align: center;
+}
