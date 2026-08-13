@@ -144,8 +144,6 @@ const successMessage = document.getElementById('success-message');
 
 
 
-console.log(applicationId);
-
 form.addEventListener("submit", (event) => {
     if (!validateRollNumber() || !validatePhoneNumber() || !validateEmail() || !validateRoommateRollNumber()) {
         event.preventDefault()
@@ -159,6 +157,7 @@ form.addEventListener("submit", (event) => {
         const applicationId = `HH-${new Date().getFullYear()}-${shortID}`;
         const applicationData = Object.fromEntries(formData)
         applicationData.applicationId = applicationId;
+        applicationData.status = "Submitted";
         console.log(applicationData);
 
 

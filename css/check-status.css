@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    background: var(--background-color);
+    min-height: calc(100vh - 85px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-card {
+
+    background: var(--surface-color);
+    width: 100%;
+    max-width: 600px;
+
+    border: 1px solid #E5E7EB;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, .08);
+    padding: 2.5rem;
+}
+
+.status-card h2 {
+    color: #111827;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+.status-description {
+    color: #6B7280;
+    font-size: 0.95rem;
+}
+
+.form-group label {
+    color: #374151;
+    font-weight: 500;
+}
+
+.form-group input {
+    color: #374151;
+    border: 1px solid #D1D5DB;
+    border-radius: .6rem;
+    padding: .4rem .8rem;
+
+}
+
+.form-group input:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    outline: none;
+
+}
+
+.form-group input[type="text"] {
+    color: #111827;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    margin-bottom: 1rem;
+}
+
+.form-group input {
+    width: 100%;
+}
+
+.status-result {
+    display: none;
+}
+
+.status-button {
+    margin-top: 1.2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    width: 60%;
+}
