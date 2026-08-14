@@ -29,6 +29,7 @@ main {
     font-size: 2rem;
     margin-bottom: 1.5rem;
 }
+
 .status-description {
     color: #6B7280;
     font-size: 0.95rem;
@@ -77,8 +78,63 @@ main {
     margin-top: 1.2rem;
     display: flex;
     justify-content: center;
+    margin-bottom: 1rem;
 }
 
 .btn {
     width: 60%;
+}
+
+.status-result {
+    display: none;
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    color: #166534;
+    border-radius: 1.2rem;
+    padding: 1.3rem;
+}
+.status-header{
+    margin-bottom: 1rem;
+}
+
+.status-header h3 {
+    color: #16A34A;
+    font-size: 1.3rem;
+}
+
+.status-header p {
+    color: #6B7280;
+}
+
+.status-item span {
+    display: block;
+    color: #6B7280;
+    font-size: .85rem;
+    margin-bottom: .25rem;
+}
+
+.status-item strong {
+    display: block;
+    color: #111827;
+    font-weight: 600;
+}
+
+.status-item {
+    padding: .8rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.status-item:last-child {
+    border-bottom: none;
+}
+
+.status-error {
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    color: #991B1B;
+}
+
+.status-error .status-header h3 {
+    color: #DC2626;
 }

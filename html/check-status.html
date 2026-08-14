@@ -36,14 +36,31 @@
                 <input type="text" id="application-id" name="applicationId" required>
             </div>
 
-             <div class="status-button">
+            <div class="status-button">
                 <button type="button" id="status-btn" class="btn">
-                Check Status
-            </button>
-             </div>
-            <p class="status-result" id="status-result">
-                <!-- Application submitted successfully! -->
-            </p>
+                    Check Status
+                </button>
+            </div>
+            <div class="status-result" id="status-result">
+                <div class="status-header">
+                    <h3>Application Found</h3>
+                    <p>Your application has been found.</p>
+                </div>
+                <div class="status-details">
+                    <div class="status-item">
+                        <span>Application ID</span>
+                        <strong id="result-application-id"></strong>
+                    </div>
+                    <div class="status-item">
+                        <span>Student Name</span>
+                        <strong id="result-student-name"></strong>
+                    </div>
+                    <div class="status-item">
+                        <span>Application Status</span>
+                        <strong id="result-status"></strong>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
