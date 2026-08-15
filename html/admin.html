@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin-Portal</title>
+</head>
+
+<body>
+    <main>
+        <div class="admin-header">
+            <h2>Admin Dashboard</h2>
+            <p>Manage hostel applications</p>
+        </div>
+        <section class="total-applications">
+            <h2>Total Applications</h2>
+            <strong id="total-count">0</strong>
+        </section>
+        <section class="search-section">
+            <div class="form-group">
+                <label for="search-id">Search Applications</label>
+                <input type="text" id="search-id">
+            </div>
+            <div class="form-group">
+                <label for="status-filter">Filter by Status</label>
+
+                <select id="status-filter">
+                    <option value="all">All Applications</option>
+                    <option value="Submitted" >Submitted</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+            </div>
+        </section>
+
+        <div id="applications-container"></div>
+    </main>
+    <script src="../js/admin.js"></script>
+</body>
+
+</html>
