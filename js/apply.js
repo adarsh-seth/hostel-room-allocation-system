@@ -158,12 +158,14 @@ form.addEventListener("submit", (event) => {
         const applicationData = Object.fromEntries(formData)
         applicationData.applicationId = applicationId;
         applicationData.status = "Submitted";
-        console.log(applicationData);
-
+        
+        const savedApplication = localStorage.getItem("hostelApplications")
+        const applications = savedApplication ? JSON.parse(savedApplication) : [];
+        applications.push(applicationData);
 
         localStorage.setItem(
-            "hostelApplication",
-            JSON.stringify(applicationData)
+            "hostelApplications",
+            JSON.stringify(applications)
         )
         successMessage.style.display = "block";
 

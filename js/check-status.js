@@ -7,15 +7,20 @@ const resultStudentName = document.getElementById('result-student-name');
 const resultStatus = document.getElementById('result-status')
 
 statusBtn.addEventListener("click", () => {
-    const savedApplication = localStorage.getItem("hostelApplication")
+    const savedApplication = localStorage.getItem("hostelApplications")
+    
     if (savedApplication === null) {
         statusResult.style.display = "block";
         statusResult.textContent = "No Application found. Please submit a hostel application first."
     }
     else {
-        const application = JSON.parse(savedApplication)
+        const applications = JSON.parse(savedApplication);
 
-        if (application.applicationId === enteredApplicationId.value) {
+        const application = applications.find((application) => {
+           return application.applicationId === enteredApplicationId.value;
+        })
+
+        if (application) {
             statusResult.style.display = "block";
             statusResult.classList.remove("status-error");
             statusResult.classList.add("status-success");
