@@ -37,25 +37,23 @@ function renderApplications(applicationsToRender){
 }
 renderApplications(applications);
 
-const statusSelect = document.querySelectorAll(".application-status");
-
-statusSelect.forEach(select => {
-    select.addEventListener("change", () => {
-        const application = applications.find((application) => {
-            return application.applicationId === select.dataset.applicationId;
-        })
-        application.status = select.value;
-        localStorage.setItem(
-            "hostelApplications",
-            JSON.stringify(applications)
-        )
-
-    })
-})
-
 searchValue.addEventListener("input", () => {
     const filteredApplications = applications.filter((application) => {
         return application.applicationId.includes(searchValue.value);
     });
     renderApplications(filteredApplications);
+})
+
+applicationContainer.addEventListener("change", (event) => {
+
+  const application = applications.find((application) => {
+     return event.target.dataset.applicationId === application.applicationId
+  })
+    application.status = event.target.value
+
+
+     localStorage.setItem(
+            "hostelApplications",
+            JSON.stringify(applications)
+        )
 })
