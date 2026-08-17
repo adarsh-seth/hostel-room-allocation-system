@@ -6,14 +6,16 @@ const savedApplications = localStorage.getItem("hostelApplications");
 
 const applications = savedApplications ? JSON.parse(savedApplications) : [];
 
+const statusFilter = document.getElementById('status-filter');
+
 totalCount.textContent = applications.length;
 
-function renderApplications(applicationsToRender){
+function renderApplications(applicationsToRender) {
     applicationContainer.innerHTML = ""
     applicationsToRender.forEach(application => {
-    const card = document.createElement("div");
-    card.classList.add("application-card");
-    card.innerHTML = `
+        const card = document.createElement("div");
+        card.classList.add("application-card");
+        card.innerHTML = `
     <h3>${application.applicationId}</h3>
     <p>${application.fullName}</p>
     <p>${application.rollNumber}</p>
@@ -31,8 +33,8 @@ function renderApplications(applicationsToRender){
 </select>
    
 `;
-    applicationContainer.appendChild(card);
-});
+        applicationContainer.appendChild(card);
+    });
 
 }
 renderApplications(applications);
@@ -46,14 +48,29 @@ searchValue.addEventListener("input", () => {
 
 applicationContainer.addEventListener("change", (event) => {
 
-  const application = applications.find((application) => {
-     return event.target.dataset.applicationId === application.applicationId
-  })
+    const application = applications.find((application) => {
+        return event.target.dataset.applicationId === application.applicationId
+    })
     application.status = event.target.value
 
 
-     localStorage.setItem(
-            "hostelApplications",
-            JSON.stringify(applications)
-        )
+    localStorage.setItem(
+        "hostelApplications",
+        JSON.stringify(applications)
+    )
+})
+
+
+
+statusFilter.addEventListener("change", () => {
+    if (statusFilter.value === "all") {
+        renderApplications(applications);
+    }
+    else {
+        const filteredApplications = applications.filter((application) => {
+            return statusFilter.value === application.status;
+           
+        })
+        renderApplications(filteredApplications);
+    }
 })
