@@ -40,10 +40,7 @@ function renderApplications(applicationsToRender) {
 renderApplications(applications);
 
 searchValue.addEventListener("input", () => {
-    const filteredApplications = applications.filter((application) => {
-        return application.applicationId.includes(searchValue.value);
-    });
-    renderApplications(filteredApplications);
+    applyFilters();
 })
 
 applicationContainer.addEventListener("change", (event) => {
@@ -63,14 +60,15 @@ applicationContainer.addEventListener("change", (event) => {
 
 
 statusFilter.addEventListener("change", () => {
-    if (statusFilter.value === "all") {
-        renderApplications(applications);
-    }
-    else {
-        const filteredApplications = applications.filter((application) => {
-            return statusFilter.value === application.status;
-           
-        })
-        renderApplications(filteredApplications);
-    }
+    applyFilters();
 })
+
+
+
+function applyFilters() {
+    const filteredApplications = applications.filter((application) => {
+        return application.applicationId.includes(searchValue.value) && (statusFilter.value === application.status || statusFilter.value === "all")
+    })
+    renderApplications(filteredApplications)
+
+}
