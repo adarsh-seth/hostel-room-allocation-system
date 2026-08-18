@@ -189,3 +189,23 @@ main {
     color: #B91C1C;
     border-color: #FECACA;
 }
+
+.empty-card{
+    text-align: center;
+    line-height: 1.4;
+    width: 700px;
+    background: #FFFFFF;
+    border: 1px solid #FECACA;
+    border-radius: 1.2rem;
+    padding: 2rem 3rem;
+    
+}
+.empty-card h4 {
+    color: #B91C1C;
+    font-size: 1.2rem;
+    margin-bottom: .4rem;
+}
+
+.empty-card p {
+    color: #6B7280;
+}

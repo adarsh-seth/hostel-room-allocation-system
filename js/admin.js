@@ -83,8 +83,19 @@ function applyFilters() {
     const filteredApplications = applications.filter((application) => {
         return application.applicationId.includes(searchValue.value) && (statusFilter.value === application.status || statusFilter.value === "all")
     })
-    renderApplications(filteredApplications)
+    applicationContainer.innerHTML = "";
+    if(filteredApplications.length === 0){
+        const emptyCard = document.createElement('div')
+        emptyCard.classList.add("empty-card")
+        emptyCard.innerHTML = `
+        <h4>No Applications Found</h4>
+        <p>Try changing your search or status filter.</p>`
 
+        applicationContainer.appendChild(emptyCard);
+    }
+    else{
+    renderApplications(filteredApplications)
+    }
 }
 
 function getStatusClass(status) {
