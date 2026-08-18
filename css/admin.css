@@ -165,3 +165,27 @@ main {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     outline: none;
 }
+
+.application-card select.status-submitted {
+    background: #EFF6FF;
+    color: #1D4ED8;
+    border-color: #BFDBFE;
+}
+
+.application-card select.status-review {
+    background: #FFFBEB;
+    color: #B45309;
+    border-color: #FDE68A;
+}
+
+.application-card select.status-approved {
+    background: #F0FDF4;
+    color: #15803D;
+    border-color: #BBF7D0;
+}
+
+.application-card select.status-rejected {
+    background: #FEF2F2;
+    color: #B91C1C;
+    border-color: #FECACA;
+}

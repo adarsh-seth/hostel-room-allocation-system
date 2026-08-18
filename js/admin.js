@@ -11,8 +11,10 @@ const statusFilter = document.getElementById('status-filter');
 totalCount.textContent = applications.length;
 
 function renderApplications(applicationsToRender) {
+
     applicationContainer.innerHTML = ""
     applicationsToRender.forEach(application => {
+        const statusClass = getStatusClass(application.status);
         const card = document.createElement("div");
         card.classList.add("application-card");
         card.innerHTML = `
@@ -27,7 +29,7 @@ function renderApplications(applicationsToRender) {
     <div class="card-status">
     <label>Application Status</label>
 
-    <select class="application-status"
+    <select class="application-status ${statusClass}"
         data-application-id="${application.applicationId}">
     <option value="Submitted" ${application.status === "Submitted" ? "selected" : ""}>Submitted</option>
     <option value="Under Review" ${application.status === "Under Review" ? "selected" : ""}>Under Review</option>
@@ -53,7 +55,16 @@ applicationContainer.addEventListener("change", (event) => {
             return event.target.dataset.applicationId === application.applicationId
         })
         application.status = event.target.value
+        const newStatusClass = getStatusClass(application.status)
 
+         event.target.classList.remove(
+            "status-submitted",
+            "status-review",
+            "status-approved",
+            "status-rejected"
+        );
+
+        event.target.classList.add(newStatusClass);
 
         localStorage.setItem(
             "hostelApplications",
@@ -64,13 +75,9 @@ applicationContainer.addEventListener("change", (event) => {
 
 })
 
-
-
 statusFilter.addEventListener("change", () => {
     applyFilters();
 })
-
-
 
 function applyFilters() {
     const filteredApplications = applications.filter((application) => {
@@ -79,3 +86,19 @@ function applyFilters() {
     renderApplications(filteredApplications)
 
 }
+
+function getStatusClass(status) {
+    if (status === "Approved") {
+        return "status-approved";
+    } 
+    else if (status === "Under Review") {
+        return "status-review";
+    } 
+    else if (status === "Submitted") {
+        return "status-submitted";
+    } 
+    else {
+        return "status-rejected";
+    }
+}
+
