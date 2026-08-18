@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-Portal</title>
+<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="../css/variable.css">
+<link rel="stylesheet" href="../css/global.css">
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+    </style>
 </head>
 
 <body>
@@ -14,7 +20,7 @@
             <p>Manage hostel applications</p>
         </div>
         <section class="total-applications">
-            <h2>Total Applications</h2>
+            <span>Total Applications</span>
             <strong id="total-count">0</strong>
         </section>
         <section class="search-section">
@@ -27,9 +33,10 @@
 
                 <select id="status-filter">
                     <option value="all">All Applications</option>
-                    <option value="Submitted" >Submitted</option>
+                    <option value="Submitted">Submitted</option>
                     <option value="Approved">Approved</option>
                     <option value="Rejected">Rejected</option>
+                    <option value="Under Review">Under Review</option>
                 </select>
             </div>
         </section>
@@ -40,3 +47,5 @@
 </body>
 
 </html>
+
+

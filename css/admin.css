@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+main {
+     background: linear-gradient(
+        135deg,
+        #EFF6FF 0%,
+        #F8FAFC 45%,
+        #FFFFFF 100%
+    );
+    font-family: "montserrat", sans-serif;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+
+
+.admin-header {
+    text-align: center;
+    color: var(--heading-color);
+    padding: 2rem;
+}
+
+.admin-header h2 {
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+}
+
+.admin-header p {
+    font-size: 1.2rem;
+}
+
+.total-applications {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 1.2rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1.3rem 1rem;
+    color:  #111827;
+    
+}
+.total-applications span {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.total-applications strong {
+    font-size: 2rem;
+    color: #2563EB;
+}
+
+.search-section{
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    width: 650px;
+    padding: 2rem;
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 1.2rem;
+
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.form-group label {
+    color: #374151;
+    font-weight: 500;
+}
+
+.form-group input {
+    color: #374151;
+    border: 1px solid #D1D5DB;
+    border-radius: .6rem;
+    padding: .4rem .8rem;
+    width: 100%;
+
+}
+
+.form-group input:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    outline: none;
+
+}
+
+.form-group input[type="text"] {
+    color: #111827;
+}
+
+
+
+.form-group select {
+    border: 1px solid #D1D5DB;
+    border-radius: .6rem;
+    padding: .4rem .8rem;
+    background: #FFFFFF;
+    color: #111827;
+    cursor: pointer;
+}
+
+.form-group select:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    outline: none;
+}
+.application-card{
+    display: flex;
+    margin-bottom: 1rem;
+    width: 700px;
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 1.2rem;
+    padding: 2rem 3rem;
+    justify-content: space-between;
+    gap: 5rem;
+}
+.card-info{
+    line-height: 1.5;
+}
+.card-info h3{
+    margin-bottom: 1.4rem;
+    font-size: 1.2rem;
+    color: #2563EB;
+}
+.card-info p{
+    
+    font-size: 1rem;
+    color: #111827;
+}
+
+
+.card-status label {
+    padding-right: .6rem;
+}
+
+.application-card select {
+    border: 1px solid #D1D5DB;
+    border-radius: .6rem;
+    padding: .4rem .8rem;
+    background: #FFFFFF;
+    color: #111827;
+    cursor: pointer;
+}
+
+.application-card select:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    outline: none;
+}

@@ -16,12 +16,15 @@ function renderApplications(applicationsToRender) {
         const card = document.createElement("div");
         card.classList.add("application-card");
         card.innerHTML = `
-    <h3>${application.applicationId}</h3>
-    <p>${application.fullName}</p>
-    <p>${application.rollNumber}</p>
-    <p>${application.email}</p>
-    <p>${application.phone}</p>
+    <div class="card-info">
+        <h3>${application.applicationId}</h3>
+        <p>${application.fullName}</p>
+        <p>${application.rollNumber}</p>
+        <p>${application.email}</p>
+        <p>${application.phone}</p>
+    </div>
     
+    <div class="card-status">
     <label>Application Status</label>
 
     <select class="application-status"
@@ -31,6 +34,7 @@ function renderApplications(applicationsToRender) {
     <option value="Approved" ${application.status === "Approved" ? "selected" : ""}>Approved</option>
     <option value="Rejected" ${application.status === "Rejected" ? "selected" : ""}>Rejected</option>
 </select>
+</div>
    
 `;
         applicationContainer.appendChild(card);
@@ -44,17 +48,20 @@ searchValue.addEventListener("input", () => {
 })
 
 applicationContainer.addEventListener("change", (event) => {
+    if (event.target.classList.contains("application-status")) {
+        const application = applications.find((application) => {
+            return event.target.dataset.applicationId === application.applicationId
+        })
+        application.status = event.target.value
 
-    const application = applications.find((application) => {
-        return event.target.dataset.applicationId === application.applicationId
-    })
-    application.status = event.target.value
+
+        localStorage.setItem(
+            "hostelApplications",
+            JSON.stringify(applications)
+        )
+    }
 
 
-    localStorage.setItem(
-        "hostelApplications",
-        JSON.stringify(applications)
-    )
 })
 
 
