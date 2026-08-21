@@ -70,3 +70,49 @@ main {
     padding: 2rem;
  
 }
+
+.hostel-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    color: #111827;
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 1.2rem;
+    padding: 1.5rem;
+
+}
+.hostel-card h4{
+    font-size: 1.4rem;
+    margin-bottom: .8rem;
+}
+
+.room-card {
+    background: #F8FAFC;
+    color: #111827;
+    border: 1px solid #E5E7EB;
+    border-radius: .8rem;
+    padding: 2rem 1.5rem;
+    margin-bottom: 1rem;
+}
+.room-card h5 {
+    color: #2563EB;
+    margin-bottom: .8rem;
+    text-align: center;
+}
+.beds-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .8rem;
+}
+.bed-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #F0FDF4;
+    color: #15803D;
+    border: 1px solid #BBF7D0;
+    border-radius: .6rem;
+    padding: .8rem;
+}
