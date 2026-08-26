@@ -7,28 +7,107 @@ const occupiedBeds = document.getElementById("occupied-beds");
 
 const hostels = [
     {
-        hostelId: "H8",
+        hostelId: "ABH",
+        hostelNumber: null,
+        doubleRoomCount: 10,
+        doubleRooms: []
+    },
+
+    {
+        hostelId: "BH-3",
+        hostelNumber: 3,
+        doubleRoomCount: 10,
+        doubleRooms: []
+    },
+
+    {
+        hostelId: "BH-4",
+        hostelNumber: 4,
+        doubleRoomCount: 10,
+        doubleRooms: []
+    },
+
+    {
+        hostelId: "BH-8",
         hostelNumber: 8,
-        roomCount: 10,
-        rooms: []
+        doubleRoomCount: 10,
+        doubleRooms: []
     },
+
     {
-        hostelId: "H6",
+        hostelId: "BH-1",
+        hostelNumber: 1,
+        doubleRoomCount: 10,
+        doubleRooms: []
+    },
+
+    {
+        hostelId: "BH-6",
         hostelNumber: 6,
-        roomCount: 15,
-        rooms: []
+        doubleRoomCount: 10,
+        singleRoomCount: 15,
+        doubleRooms: [],
+        singleRooms: []
     },
+
     {
-        hostelId: "H9",
-        hostelNumber: 9,
-        roomCount: 12,
-        rooms: []
-    },
-    {
-        hostelId: "H7",
+        hostelId: "BH-7",
         hostelNumber: 7,
-        roomCount: 10,
-        rooms: []
+        doubleRoomCount: 10,
+        singleRoomCount: 15,
+        doubleRooms: [],
+        singleRooms: []
+    },
+
+    {
+        hostelId: "BH-9",
+        hostelNumber: 9,
+        doubleRoomCount: 10,
+        singleRoomCount: 15,
+        doubleRooms: [],
+        singleRooms: []
+    },
+
+
+    {
+        hostelId: "GH-3",
+        hostelNumber: 3,
+        doubleRoomCount: 10,
+        doubleRooms: []
+    },
+
+    {
+        hostelId: "GH-5",
+        hostelNumber: 5,
+        doubleRoomCount: 10,
+        doubleRooms: []
+    },
+
+    {
+        hostelId: "GH-1",
+        hostelNumber: 1,
+        doubleRoomCount: 10,
+        singleRoomCount: 15,
+        doubleRooms: [],
+        singleRooms: []
+    },
+
+    {
+        hostelId: "GH-2",
+        hostelNumber: 2,
+        doubleRoomCount: 10,
+        singleRoomCount: 15,
+        doubleRooms: [],
+        singleRooms: []
+    },
+
+    {
+        hostelId: "GH-4",
+        hostelNumber: 4,
+        doubleRoomCount: 10,
+        singleRoomCount: 15,
+        doubleRooms: [],
+        singleRooms: []
     }
 ]
 
@@ -166,7 +245,7 @@ function renderHostels() {
     })
 }
 renderHostels()
-  
+
 const savedApplications = localStorage.getItem('hostelApplications')
 
 const applications = savedApplications ? JSON.parse(savedApplications) : []
@@ -175,6 +254,3 @@ const approvedApplications = applications.filter((application) => {
     return application.status === "Approved"
 })
 
-approvedApplications.sort((a,b) => {
-    return b.priority - a.priority
-})
