@@ -1,7 +1,7 @@
 const year = document.getElementById('year')
 const roommateSection = document.getElementById('roommate-section')
 const roommateRoll = document.getElementById('roommate-roll')
-const gender = document.querySelector('input[name="gender"]:checked')
+
 
 
 const hostelPreference1 = document.getElementById("hostelPreference1");
@@ -29,16 +29,24 @@ function updateHostelOptions() {
 
     const selectedGender = document.querySelector('input[name="gender"]:checked').value
     const selectedYear = year.value
-    const eligibleHostels = hostelEligibility[selectedGender][selectedYear]
+
+    if (selectedYear === "") {
+        return;
+    }
+
+    const eligibleHostels = hostelEligibility[selectedGender][selectedYear];
 
     hostelPreference1.innerHTML = '<option value="" disabled selected>Select your hostel</option>';
     hostelPreference2.innerHTML = '<option value="" disabled selected>Select your hostel</option>';
 
-    if(eligibleHostels.length === 1){
+    if (eligibleHostels.length === 1) {
         hostelPreference2.disabled = true
+        hostelPreference2.required = false
     }
-    else{
+    else {
         hostelPreference2.disabled = false
+        hostelPreference2.required = true
+
     }
 
     eligibleHostels.forEach((hostel) => {
@@ -68,20 +76,23 @@ document.querySelectorAll('input[name="gender"]').forEach((gender) => {
 
 });
 
-hostelPreference1.addEventListener("change",()=>{
+hostelPreference1.addEventListener("change", () => {
+
     const selectedHostel = hostelPreference1.value;
+    console.log(selectedHostel);
 
-    hostelPreference2.options.forEach((option)=>{
-    if(option.value === selectedHostel) {
-        option.disabled = true
-    }
-    else{
-        option.disabled = false
-    }
-})
-     
-})
+    Array.from(hostelPreference2.options).forEach((option) => {
 
+        if (option.value === selectedHostel) {
+            option.disabled = true
+        }
+        else {
+            option.disabled = false
+        }
+
+    })
+
+})
 
 
 
@@ -243,6 +254,7 @@ form.addEventListener("submit", (event) => {
         const applicationData = Object.fromEntries(formData)
         applicationData.applicationId = applicationId;
         applicationData.status = "Submitted";
+        applicationData.submittedAt = new Date().toISOString();
 
         const savedApplication = localStorage.getItem("hostelApplications")
         const applications = savedApplication ? JSON.parse(savedApplication) : [];
