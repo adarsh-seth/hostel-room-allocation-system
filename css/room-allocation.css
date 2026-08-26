@@ -116,3 +116,16 @@ main {
     border-radius: .6rem;
     padding: .8rem;
 }
+
+.status-available{
+    background: #F0FDF4;
+    color: #15803D;
+    border: 1px solid #BBF7D0;
+
+}
+.status-occupied{
+    background: #FEF2F2;
+    color: #b91c1c;
+    border: 1px solid #FECACA;
+
+}

@@ -64,63 +64,117 @@ hostels.forEach((hostel) => {
 })
 
 
-hostels.forEach((hostel) => {
-    const hostelCard = document.createElement("div");
-    hostelCard.classList.add("hostel-card");
-    hostelCard.innerHTML = `
-    <h4>Hostel ${hostel.hostelNumber}</h4>
-    `
-    hostelsContainer.appendChild(hostelCard);
-
-    hostel.rooms.forEach((room) => {
-        const roomCard = document.createElement('div');
-        roomCard.classList.add("room-card")
-        roomCard.innerHTML = `
-        <h5>Room ${room.roomNumber}</h5>
-        <div class="beds-container"></div>
-         `
-        hostelCard.appendChild(roomCard)
-
-        const bedsContainer = roomCard.querySelector(".beds-container");
 
 
-        room.beds.forEach((bed) => {
-            const bedCard = document.createElement('div');
-            bedCard.classList.add("bed-card")
-            bedCard.innerHTML = `
-        <h5>Bed ${bed.bedNumber}</h5>
-        <h5>${bed.status}</h5>
-        `
-            bedsContainer.appendChild(bedCard);
-        })
-    })
 
 
-})
 
 
-let total = 0
-let available = 0
-let occupied = 0
-hostels.forEach((hostel) => {
+function updateBedStats() {
 
-    hostel.rooms.forEach((room) => {
-        room.beds.forEach((bed) => {
-            if (bed.status === "Available") {
-                available++;
-            }
-            else if (bed.status === "Occupied") {
-                occupied++;
-            }
-            total++;
+    let total = 0
+    let available = 0
+    let occupied = 0
 
+    hostels.forEach((hostel) => {
+
+        hostel.rooms.forEach((room) => {
+            room.beds.forEach((bed) => {
+                if (bed.status === "Available") {
+                    available++;
+                }
+                else if (bed.status === "Occupied") {
+                    occupied++;
+                }
+                total++;
+
+            });
 
         });
 
     });
+    occupiedBeds.innerText = occupied;
+    availableBeds.innerText = available;
+    totalBeds.innerText = total;
 
-});
+}
 
-occupiedBeds.innerText = occupied;
-availableBeds.innerText = available;
-totalBeds.innerText = total;
+updateBedStats();
+
+
+const hostel = hostels.find((hostel) => {
+    return hostel.hostelNumber === 8;
+})
+const room = hostel.rooms.find((room) => {
+    return room.roomNumber === 801;
+})
+const bed = room.beds.find((bed) => {
+    return bed.bedNumber === 1;
+})
+bed.status = "Occupied"
+updateBedStats()
+
+
+function renderHostels() {
+    hostelsContainer.innerHTML = "";
+
+    hostels.forEach((hostel) => {
+        const hostelCard = document.createElement("div");
+        hostelCard.classList.add("hostel-card");
+        hostelCard.innerHTML = `
+    <h4>Hostel ${hostel.hostelNumber}</h4>
+    `
+        hostelsContainer.appendChild(hostelCard);
+
+        hostel.rooms.forEach((room) => {
+            const roomCard = document.createElement('div');
+            roomCard.classList.add("room-card")
+            roomCard.innerHTML = `
+        <h5>Room ${room.roomNumber}</h5>
+        <div class="beds-container"></div>
+         `
+            hostelCard.appendChild(roomCard)
+
+            const bedsContainer = roomCard.querySelector(".beds-container");
+
+
+            room.beds.forEach((bed) => {
+
+                const bedCard = document.createElement("div");
+
+                let statusClass;
+
+                if (bed.status === "Available") {
+                    statusClass = "status-available";
+                } else {
+                    statusClass = "status-occupied";
+                }
+
+                bedCard.classList.add("bed-card");
+                bedCard.classList.add(statusClass);
+
+                bedCard.innerHTML = `
+                <h5>Bed ${bed.bedNumber}</h5>
+                <h5>${bed.status}</h5>
+            `;
+
+                bedsContainer.appendChild(bedCard);
+            })
+        })
+
+
+    })
+}
+renderHostels()
+  
+const savedApplications = localStorage.getItem('hostelApplications')
+
+const applications = savedApplications ? JSON.parse(savedApplications) : []
+
+const approvedApplications = applications.filter((application) => {
+    return application.status === "Approved"
+})
+
+approvedApplications.sort((a,b) => {
+    return b.priority - a.priority
+})

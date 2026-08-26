@@ -1,9 +1,94 @@
 const year = document.getElementById('year')
 const roommateSection = document.getElementById('roommate-section')
 const roommateRoll = document.getElementById('roommate-roll')
+const gender = document.querySelector('input[name="gender"]:checked')
+
+
+const hostelPreference1 = document.getElementById("hostelPreference1");
+const hostelPreference2 = document.getElementById("hostelPreference2");
+
+
+const hostelEligibility = {
+    male: {
+        1: ["ABH", "BH-3"],
+        2: ["BH-4", "BH-8", "BH-1"],
+        3: ["BH-6", "BH-7", "BH-9"],
+        4: ["BH-6", "BH-7", "BH-9"]
+    },
+    female: {
+        1: ["GH-3"],
+        2: ["GH-5"],
+        3: ["GH-1", "GH-2", "GH-4"],
+        4: ["GH-1", "GH-2", "GH-4"]
+    }
+
+
+}
+
+function updateHostelOptions() {
+
+    const selectedGender = document.querySelector('input[name="gender"]:checked').value
+    const selectedYear = year.value
+    const eligibleHostels = hostelEligibility[selectedGender][selectedYear]
+
+    hostelPreference1.innerHTML = '<option value="" disabled selected>Select your hostel</option>';
+    hostelPreference2.innerHTML = '<option value="" disabled selected>Select your hostel</option>';
+
+    if(eligibleHostels.length === 1){
+        hostelPreference2.disabled = true
+    }
+    else{
+        hostelPreference2.disabled = false
+    }
+
+    eligibleHostels.forEach((hostel) => {
+        const option = document.createElement("option");
+        option.value = hostel
+        option.textContent = hostel
+        hostelPreference1.appendChild(option)
+    });
+    eligibleHostels.forEach((hostel) => {
+        const option = document.createElement("option");
+        option.value = hostel
+        option.textContent = hostel
+        hostelPreference2.appendChild(option)
+    });
+
+}
+
+
+year.addEventListener("change", () => {
+    updateHostelOptions()
+})
+document.querySelectorAll('input[name="gender"]').forEach((gender) => {
+
+    gender.addEventListener("change", () => {
+        updateHostelOptions()
+    });
+
+});
+
+hostelPreference1.addEventListener("change",()=>{
+    const selectedHostel = hostelPreference1.value;
+
+    hostelPreference2.options.forEach((option)=>{
+    if(option.value === selectedHostel) {
+        option.disabled = true
+    }
+    else{
+        option.disabled = false
+    }
+})
+     
+})
+
+
+
+
+
 
 function updateRoommateSection() {
-    if (year.value === "1") {
+    if (year.value === "1" || year.value === "4") {
         roommateSection.style.display = "none";
         roommateRoll.disabled = true;
         roommateRoll.value = "";
@@ -150,7 +235,7 @@ form.addEventListener("submit", (event) => {
     }
     else {
         event.preventDefault(); // because we have not implemented backend yet
-        
+
         const formData = new FormData(form);
         const uuid = crypto.randomUUID();
         const shortID = uuid.slice(0, 6).toUpperCase();
@@ -158,7 +243,7 @@ form.addEventListener("submit", (event) => {
         const applicationData = Object.fromEntries(formData)
         applicationData.applicationId = applicationId;
         applicationData.status = "Submitted";
-        
+
         const savedApplication = localStorage.getItem("hostelApplications")
         const applications = savedApplication ? JSON.parse(savedApplication) : [];
         applications.push(applicationData);
