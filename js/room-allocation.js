@@ -126,7 +126,7 @@ hostels.forEach((hostel) => {
 
         hostel.rooms.push(room)
 
-        for (let bedIndex = 1; bedIndex <= 3; bedIndex++) {
+        for (let bedIndex = 1; bedIndex <= 2; bedIndex++) {
 
             const bedNumber = bedIndex;
 
