@@ -112,8 +112,6 @@ const hostels = [
 ]
 
 
-
-
 hostels.forEach((hostel) => {
     for (let index = 1; index <= hostel.doubleRoomCount; index++) {
         const roomNumber = hostel.hostelNumber * 100 + index;
@@ -171,12 +169,6 @@ hostels.forEach((hostel) => {
 })
 
 
-
-
-
-
-
-
 function updateBedStats() {
 
     let total = 0
@@ -185,8 +177,8 @@ function updateBedStats() {
 
     hostels.forEach((hostel) => {
 
-        hostel.rooms.forEach((room) => {
-            room.beds.forEach((bed) => {
+        hostel.doubleRooms.forEach((doubleRoom) => {
+            doubleRoom.beds.forEach((bed) => {
                 if (bed.status === "Available") {
                     available++;
                 }
@@ -198,6 +190,21 @@ function updateBedStats() {
             });
 
         });
+        if (hostel.singleRoomCount > 0) {
+            hostel.singleRooms.forEach((singleRoom) => {
+                singleRoom.beds.forEach((bed) => {
+                    if (bed.status === "Available") {
+                        available++;
+                    }
+                    else if (bed.status === "Occupied") {
+                        occupied++;
+                    }
+                    total++;
+
+                });
+
+            });
+        }
 
     });
     occupiedBeds.innerText = occupied;
@@ -209,17 +216,17 @@ function updateBedStats() {
 updateBedStats();
 
 
-const hostel = hostels.find((hostel) => {
-    return hostel.hostelNumber === 8;
-})
-const room = hostel.rooms.find((room) => {
-    return room.roomNumber === 801;
-})
-const bed = room.beds.find((bed) => {
-    return bed.bedNumber === 1;
-})
-bed.status = "Occupied"
-updateBedStats()
+// const hostel = hostels.find((hostel) => {
+//     return hostel.hostelNumber === 8;
+// })
+// const room = hostel.rooms.find((room) => {
+//     return room.roomNumber === 801;
+// })
+// const bed = room.beds.find((bed) => {
+//     return bed.bedNumber === 1;
+// })
+// bed.status = "Occupied"
+// updateBedStats()
 
 
 function renderHostels() {
