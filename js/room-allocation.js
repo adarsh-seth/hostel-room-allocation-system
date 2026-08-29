@@ -8,7 +8,7 @@ const occupiedBeds = document.getElementById("occupied-beds");
 const hostels = [
     {
         hostelId: "ABH",
-        hostelNumber: null,
+        hostelNumber: 10,
         doubleRoomCount: 10,
         doubleRooms: []
     },
@@ -71,21 +71,21 @@ const hostels = [
 
     {
         hostelId: "GH-3",
-        hostelNumber: 3,
+        hostelNumber: 13,
         doubleRoomCount: 10,
         doubleRooms: []
     },
 
     {
         hostelId: "GH-5",
-        hostelNumber: 5,
+        hostelNumber: 15,
         doubleRoomCount: 10,
         doubleRooms: []
     },
 
     {
         hostelId: "GH-1",
-        hostelNumber: 1,
+        hostelNumber: 11,
         doubleRoomCount: 10,
         singleRoomCount: 15,
         doubleRooms: [],
@@ -94,7 +94,7 @@ const hostels = [
 
     {
         hostelId: "GH-2",
-        hostelNumber: 2,
+        hostelNumber: 12,
         doubleRoomCount: 10,
         singleRoomCount: 15,
         doubleRooms: [],
@@ -103,7 +103,7 @@ const hostels = [
 
     {
         hostelId: "GH-4",
-        hostelNumber: 4,
+        hostelNumber: 14,
         doubleRoomCount: 10,
         singleRoomCount: 15,
         doubleRooms: [],
@@ -115,31 +115,47 @@ const hostels = [
 
 
 hostels.forEach((hostel) => {
-    for (let index = 1; index <= hostel.roomCount; index++) {
-        const roomNumber = hostel.hostelNumber * 100 + index;
+    for (let index = 1; index <= hostel.doubleRoomCount; index++) {
+        roomNumber = hostel.hostelNumber * 100 + index;
 
-        const room =
+        const doubleRoom =
         {
             roomNumber: roomNumber,
             beds: []
         }
+        hostel.doubleRooms.push(doubleRoom)
 
-        hostel.rooms.push(room)
+    }
+    if (hostel.singleRoomCount != 0) {
+        for (let index = hostel.doubleRoomCount + 1; index <= hostel.singleRoomCount + hostel.doubleRoomCount; index++) {
 
-        for (let bedIndex = 1; bedIndex <= 2; bedIndex++) {
+            roomNumber = hostel.hostelNumber * 100 + index;
 
-            const bedNumber = bedIndex;
-
-            const bed = {
-                bedNumber: bedNumber,
-                status: "Available",
-                applicationId: null
+            const singleRoom =
+            {
+                roomNumber: roomNumber,
+                beds: []
             }
-            room.beds.push(bed)
+            hostel.singleRooms.push(singleRoom)
+
         }
 
 
     }
+
+    for (let bedIndex = 1; bedIndex <= 2; bedIndex++) {
+
+        const bedNumber = bedIndex;
+
+        const bed = {
+            bedNumber: bedNumber,
+            status: "Available",
+            applicationId: null
+        }
+        room.beds.push(bed)
+    }
+
+
 })
 
 
