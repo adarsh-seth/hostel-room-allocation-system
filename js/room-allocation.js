@@ -289,3 +289,27 @@ const approvedApplications = applications.filter((application) => {
     return application.status === "Approved"
 })
 
+const fourthYearApplications = approvedApplications.filter((application) => {
+    return application.year == "4"
+})
+
+fourthYearApplications.forEach((application) => {
+
+    const selectedHostel = hostels.find((hostel) => {
+        return hostel.hostelId === application.hostelPreference1;
+    });
+
+    const availableSingleRooms = selectedHostel.singleRooms.filter((room) => {
+         return room.beds[0].status === "Available"
+    })
+
+    const selectedRoom = availableSingleRooms[0];
+    
+    if(selectedRoom){
+        const selectedBed = selectedRoom.beds[0] 
+         
+        selectedBed.status = "Occupied"
+        selectedBed.applicationId = application.applicationId
+      }
+
+});
