@@ -116,7 +116,7 @@ const hostels = [
 
 hostels.forEach((hostel) => {
     for (let index = 1; index <= hostel.doubleRoomCount; index++) {
-        roomNumber = hostel.hostelNumber * 100 + index;
+        const roomNumber = hostel.hostelNumber * 100 + index;
 
         const doubleRoom =
         {
@@ -125,11 +125,23 @@ hostels.forEach((hostel) => {
         }
         hostel.doubleRooms.push(doubleRoom)
 
+        for (let bedIndex = 1; bedIndex <= 2; bedIndex++) {
+
+            const bedNumber = bedIndex;
+
+            const bed = {
+                bedNumber: bedNumber,
+                status: "Available",
+                applicationId: null
+            }
+            doubleRoom.beds.push(bed)
+        }
+
     }
     if (hostel.singleRoomCount != 0) {
         for (let index = hostel.doubleRoomCount + 1; index <= hostel.singleRoomCount + hostel.doubleRoomCount; index++) {
 
-            roomNumber = hostel.hostelNumber * 100 + index;
+            const roomNumber = hostel.hostelNumber * 100 + index;
 
             const singleRoom =
             {
@@ -138,24 +150,24 @@ hostels.forEach((hostel) => {
             }
             hostel.singleRooms.push(singleRoom)
 
+            for (let bedIndex = 1; bedIndex <= 1; bedIndex++) {
+
+                const bedNumber = bedIndex;
+
+                const bed = {
+                    bedNumber: bedNumber,
+                    status: "Available",
+                    applicationId: null
+                }
+                singleRoom.beds.push(bed)
+            }
+
+
+
         }
 
 
     }
-
-    for (let bedIndex = 1; bedIndex <= 2; bedIndex++) {
-
-        const bedNumber = bedIndex;
-
-        const bed = {
-            bedNumber: bedNumber,
-            status: "Available",
-            applicationId: null
-        }
-        room.beds.push(bed)
-    }
-
-
 })
 
 
