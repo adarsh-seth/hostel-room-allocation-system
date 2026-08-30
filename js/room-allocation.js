@@ -310,6 +310,54 @@ fourthYearApplications.forEach((application) => {
          
         selectedBed.status = "Occupied"
         selectedBed.applicationId = application.applicationId
+
+        application.allocation = {
+            status : "Allocated",
+            hostelId : selectedHostel.hostelId,
+            roomNumber : selectedRoom.roomNumber,
+            bedNumber : selectedBed.bedNumber
+        }
       }
+    else {
+        const secondPreferenceHostel = hostels.find((hostel) =>{
+            return hostel.hostelId === application.hostelPreference2
+        })
+        const availableSecondPreferenceRooms = secondPreferenceHostel.singleRooms.filter((room)=>{
+            return room.beds[0].status === "Available"
+        })
+        const selectedSecondPreferenceRoom = availableSecondPreferenceRooms[0]
+
+        if(selectedSecondPreferenceRoom){
+            const selectedBed = selectedSecondPreferenceRoom.beds[0]
+
+            selectedBed.status = "Occupied"
+            selectedBed.applicationId = application.applicationId
+
+            application.allocation = {
+            status : "Allocated",
+            hostelId : secondPreferenceHostel.hostelId,
+            roomNumber : selectedSecondPreferenceRoom.roomNumber,
+            bedNumber : selectedBed.bedNumber
+        }
+        }
+        else{
+            application.allocation = {
+                status : "Unallocated"
+            }
+        }
+    }
 
 });
+
+const firstYearApplications = approvedApplications.filter((application) =>{
+    return application.year == "1"
+})
+
+firstYearApplications.forEach((application) => {
+
+    const selectedHostel = hostels.find((hostel)=>{
+        return hostel.hostelId === application.hostelPreference1
+    })
+    
+
+})
