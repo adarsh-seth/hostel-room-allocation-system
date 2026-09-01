@@ -565,3 +565,6 @@ secondThirdYearApplications.forEach((application) => {
 
 
 });
+
+localStorage.setItem("hostelData",JSON.stringify(hostels))
+localStorage.setItem("hostelApplications",JSON.stringify(applications))
