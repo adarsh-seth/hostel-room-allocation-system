@@ -402,18 +402,101 @@ firstYearApplications.forEach((application) => {
             selectedBed.status = "Occupied"
             selectedBed.applicationId = application.applicationId
             application.allocation = {
-            status: "Allocated",
-            hostelId: secondPreferenceHostel.hostelId,
-            roomNumber: selectedSecondPreferenceRoom.roomNumber,
-            bedNumber: selectedBed.bedNumber
-        }
+                status: "Allocated",
+                hostelId: secondPreferenceHostel.hostelId,
+                roomNumber: selectedSecondPreferenceRoom.roomNumber,
+                bedNumber: selectedBed.bedNumber
+            }
         }
         else {
             application.allocation = {
-                status : "Unallocated"
+                status: "Unallocated"
             }
         }
-
     }
-
 })
+
+const secondThirdYearApplications = approvedApplications.filter((application) => {
+    return application.year === "2" || application.year === "3"
+});
+
+secondThirdYearApplications.forEach((application) => {
+
+    const roommateApplication = applications.find((roommate) => {
+        return roommate.rollNumber === application.roommateRoll
+
+    })
+    if (roommateApplication && roommateApplication.status === "Approved") {
+
+        const selectedHostel = hostels.find((hostel) => {
+            return hostel.hostelId === application.hostelPreference1
+        })
+        const availableDoubleRooms = selectedHostel.doubleRooms.filter((room) => {
+            return room.beds[0].status === "Available" && room.beds[1].status === "Available"
+        })
+        const selectedRoom = availableDoubleRooms[0]
+
+        if (selectedRoom) {
+            const selectedBed = selectedRoom.beds[0]
+            const roommateBed = selectedRoom.beds[1]
+
+            selectedBed.status = "Occupied";
+            selectedBed.applicationId = application.applicationId;
+            roommateBed.status = "Occupied";
+            roommateBed.applicationId = roommateApplication.applicationId;
+
+            application.allocation = {
+                status: "Allocated",
+                hostelId: selectedHostel.hostelId,
+                roomNumber: selectedRoom.roomNumber,
+                bedNumber: selectedBed.bedNumber
+            }
+            roommateApplication.allocation = {
+                status: "Allocated",
+                hostelId: selectedHostel.hostelId,
+                roomNumber: selectedRoom.roomNumber,
+                bedNumber: roommateBed.bedNumber
+            };
+        }
+        else {
+            const secondPreferenceHostel = hostels.find((hostel) => {
+                return hostel.hostelId === application.hostelPreference2
+            })
+            const availableDoubleRooms = secondPreferenceHostel.doubleRooms.filter((room) => {
+                return room.beds[0].status === "Available" && room.beds[1].status === "Available"
+            })
+            const selectedRoom = availableDoubleRooms[0]
+
+            if (selectedRoom) {
+                const selectedBed = selectedRoom.beds[0]
+                const roommateBed = selectedRoom.beds[1]
+
+                selectedBed.status = "Occupied";
+                selectedBed.applicationId = application.applicationId;
+                roommateBed.status = "Occupied";
+                roommateBed.applicationId = roommateApplication.applicationId;
+
+                application.allocation = {
+                    status: "Allocated",
+                    hostelId: secondPreferenceHostel.hostelId,
+                    roomNumber: selectedRoom.roomNumber,
+                    bedNumber: selectedBed.bedNumber
+                }
+                roommateApplication.allocation = {
+                    status: "Allocated",
+                    hostelId: secondPreferenceHostel.hostelId,
+                    roomNumber: selectedRoom.roomNumber,
+                    bedNumber: roommateBed.bedNumber
+                };
+            }
+            else{
+                application.allocation= {
+                    status : "Unallocated"
+                }
+                roommateApplication.allocation = {
+                    status : "Unallocated"
+                }
+            }
+        }
+    }
+});
