@@ -136,7 +136,7 @@ hostels.forEach((hostel) => {
         }
 
     }
-    if (hostel.singleRoomCount != 0) {
+    if (hostel.singleRoomCount > 0) {
         for (let index = hostel.doubleRoomCount + 1; index <= hostel.singleRoomCount + hostel.doubleRoomCount; index++) {
 
             const roomNumber = hostel.hostelNumber * 100 + index;
@@ -229,57 +229,57 @@ updateBedStats();
 // updateBedStats()
 
 
-function renderHostels() {
-    hostelsContainer.innerHTML = "";
+// function renderHostels() {
+//     hostelsContainer.innerHTML = "";
 
-    hostels.forEach((hostel) => {
-        const hostelCard = document.createElement("div");
-        hostelCard.classList.add("hostel-card");
-        hostelCard.innerHTML = `
-    <h4>Hostel ${hostel.hostelNumber}</h4>
-    `
-        hostelsContainer.appendChild(hostelCard);
+//     hostels.forEach((hostel) => {
+//         const hostelCard = document.createElement("div");
+//         hostelCard.classList.add("hostel-card");
+//         hostelCard.innerHTML = `
+//     <h4>Hostel ${hostel.hostelNumber}</h4>
+//     `
+//         hostelsContainer.appendChild(hostelCard);
 
-        hostel.rooms.forEach((room) => {
-            const roomCard = document.createElement('div');
-            roomCard.classList.add("room-card")
-            roomCard.innerHTML = `
-        <h5>Room ${room.roomNumber}</h5>
-        <div class="beds-container"></div>
-         `
-            hostelCard.appendChild(roomCard)
+//         hostel.rooms.forEach((room) => {
+//             const roomCard = document.createElement('div');
+//             roomCard.classList.add("room-card")
+//             roomCard.innerHTML = `
+//         <h5>Room ${room.roomNumber}</h5>
+//         <div class="beds-container"></div>
+//          `
+//             hostelCard.appendChild(roomCard)
 
-            const bedsContainer = roomCard.querySelector(".beds-container");
-
-
-            room.beds.forEach((bed) => {
-
-                const bedCard = document.createElement("div");
-
-                let statusClass;
-
-                if (bed.status === "Available") {
-                    statusClass = "status-available";
-                } else {
-                    statusClass = "status-occupied";
-                }
-
-                bedCard.classList.add("bed-card");
-                bedCard.classList.add(statusClass);
-
-                bedCard.innerHTML = `
-                <h5>Bed ${bed.bedNumber}</h5>
-                <h5>${bed.status}</h5>
-            `;
-
-                bedsContainer.appendChild(bedCard);
-            })
-        })
+//             const bedsContainer = roomCard.querySelector(".beds-container");
 
 
-    })
-}
-renderHostels()
+//             room.beds.forEach((bed) => {
+
+//                 const bedCard = document.createElement("div");
+
+//                 let statusClass;
+
+//                 if (bed.status === "Available") {
+//                     statusClass = "status-available";
+//                 } else {
+//                     statusClass = "status-occupied";
+//                 }
+
+//                 bedCard.classList.add("bed-card");
+//                 bedCard.classList.add(statusClass);
+
+//                 bedCard.innerHTML = `
+//                 <h5>Bed ${bed.bedNumber}</h5>
+//                 <h5>${bed.status}</h5>
+//             `;
+
+//                 bedsContainer.appendChild(bedCard);
+//             })
+//         })
+
+
+//     })
+// }
+// renderHostels()
 
 const savedApplications = localStorage.getItem('hostelApplications')
 
@@ -421,7 +421,9 @@ const secondThirdYearApplications = approvedApplications.filter((application) =>
 });
 
 secondThirdYearApplications.forEach((application) => {
-
+    if (application.allocation) {
+        return;
+    }
     const roommateApplication = applications.find((roommate) => {
         return roommate.rollNumber === application.roommateRoll
 
@@ -489,14 +491,77 @@ secondThirdYearApplications.forEach((application) => {
                     bedNumber: roommateBed.bedNumber
                 };
             }
-            else{
-                application.allocation= {
-                    status : "Unallocated"
+            else {
+                application.allocation = {
+                    status: "Unallocated"
                 }
                 roommateApplication.allocation = {
+                    status: "Unallocated"
+                }
+            }
+        }
+    }
+    else {
+        const selectedHostel = hostels.find((hostel) => {
+            return hostel.hostelId === application.hostelPreference1
+        })
+        const availableDoubleRooms = selectedHostel.doubleRooms.filter((room) => {
+            return room.beds[0].status === "Available" || room.beds[1].status === "Available"
+        })
+        const selectedRoom = availableDoubleRooms[0];
+        if (selectedRoom) {
+            let selectedBed
+            if (selectedRoom.beds[0].status === "Available") {
+                selectedBed = selectedRoom.beds[0]
+            }
+            else {
+                selectedBed = selectedRoom.beds[1]
+            }
+
+            selectedBed.status = "Occupied"
+            selectedBed.applicationId = application.applicationId
+
+            application.allocation = {
+                status: "Allocated",
+                hostelId: selectedHostel.hostelId,
+                roomNumber: selectedRoom.roomNumber,
+                bedNumber: selectedBed.bedNumber
+            }
+        }
+        else {
+            const secondPreferenceHostel = hostels.find((hostel) => {
+                return hostel.hostelId === application.hostelPreference2
+            })
+            const availableDoubleRooms = secondPreferenceHostel.doubleRooms.filter((room) => {
+                return room.beds[0].status === "Available" || room.beds[1].status === "Available"
+            })
+            const selectedRoom = availableDoubleRooms[0];
+            if (selectedRoom) {
+                let selectedBed
+                if (selectedRoom.beds[0].status === "Available") {
+                    selectedBed = selectedRoom.beds[0]
+                }
+                else {
+                    selectedBed = selectedRoom.beds[1]
+                }
+
+                selectedBed.status = "Occupied"
+                selectedBed.applicationId = application.applicationId
+
+                application.allocation = {
+                    status: "Allocated",
+                    hostelId: secondPreferenceHostel.hostelId,
+                    roomNumber: selectedRoom.roomNumber,
+                    bedNumber: selectedBed.bedNumber
+                }
+            }
+            else{
+                application.allocation ={
                     status : "Unallocated"
                 }
             }
         }
     }
+
+
 });
