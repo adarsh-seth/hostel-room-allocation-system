@@ -5,7 +5,7 @@ const availableBeds = document.getElementById("available-beds");
 const occupiedBeds = document.getElementById("occupied-beds");
 
 
-const hostels = [
+const defaultHostels = [
     {
         hostelId: "ABH",
         hostelNumber: 10,
@@ -111,8 +111,15 @@ const hostels = [
     }
 ]
 
+const savedHostels = localStorage.getItem("hostelData");
 
-hostels.forEach((hostel) => {
+const hostels = savedHostels
+    ? JSON.parse(savedHostels)
+    : defaultHostels;
+
+
+if(!savedHostels) {
+    hostels.forEach((hostel) => {
     for (let index = 1; index <= hostel.doubleRoomCount; index++) {
         const roomNumber = hostel.hostelNumber * 100 + index;
 
@@ -167,6 +174,7 @@ hostels.forEach((hostel) => {
 
     }
 })
+}
 
 
 function updateBedStats() {
@@ -295,9 +303,20 @@ const fourthYearApplications = approvedApplications.filter((application) => {
 
 fourthYearApplications.forEach((application) => {
 
+    if (application.allocation) {
+        return;
+    }
     const selectedHostel = hostels.find((hostel) => {
         return hostel.hostelId === application.hostelPreference1;
     });
+    if (!selectedHostel) {
+
+        application.allocation = {
+            status: "Unallocated"
+        };
+
+        return;
+    }
 
     const availableSingleRooms = selectedHostel.singleRooms.filter((room) => {
         return room.beds[0].status === "Available"
@@ -322,6 +341,16 @@ fourthYearApplications.forEach((application) => {
         const secondPreferenceHostel = hostels.find((hostel) => {
             return hostel.hostelId === application.hostelPreference2
         })
+
+        if (!secondPreferenceHostel) {
+
+            application.allocation = {
+                status: "Unallocated"
+            };
+
+            return;
+        }
+
         const availableSecondPreferenceRooms = secondPreferenceHostel.singleRooms.filter((room) => {
             return room.beds[0].status === "Available"
         })
@@ -354,10 +383,20 @@ const firstYearApplications = approvedApplications.filter((application) => {
 })
 
 firstYearApplications.forEach((application) => {
-
+    if (application.allocation) {
+        return;
+    }
     const selectedHostel = hostels.find((hostel) => {
         return hostel.hostelId === application.hostelPreference1
     })
+    if (!selectedHostel) {
+
+        application.allocation = {
+            status: "Unallocated"
+        };
+
+        return;
+    }
     const availableDoubleRooms = selectedHostel.doubleRooms.filter((room) => {
         return room.beds[0].status === "Available" || room.beds[1].status === "Available"
     })
@@ -387,6 +426,14 @@ firstYearApplications.forEach((application) => {
         const secondPreferenceHostel = hostels.find((hostel) => {
             return hostel.hostelId === application.hostelPreference2
         })
+        if (!secondPreferenceHostel) {
+
+            application.allocation = {
+                status: "Unallocated"
+            };
+
+            return;
+        }
         const availableSecondPreferenceRooms = secondPreferenceHostel.doubleRooms.filter((room) => {
             return room.beds[0].status === "Available" || room.beds[1].status === "Available"
         })
@@ -433,6 +480,18 @@ secondThirdYearApplications.forEach((application) => {
         const selectedHostel = hostels.find((hostel) => {
             return hostel.hostelId === application.hostelPreference1
         })
+        if (!selectedHostel) {
+
+            application.allocation = {
+                status: "Unallocated"
+            };
+
+            roommateApplication.allocation = {
+                status: "Unallocated"
+            };
+
+            return;
+        }
         const availableDoubleRooms = selectedHostel.doubleRooms.filter((room) => {
             return room.beds[0].status === "Available" && room.beds[1].status === "Available"
         })
@@ -464,6 +523,18 @@ secondThirdYearApplications.forEach((application) => {
             const secondPreferenceHostel = hostels.find((hostel) => {
                 return hostel.hostelId === application.hostelPreference2
             })
+            if (!secondPreferenceHostel) {
+
+                application.allocation = {
+                    status: "Unallocated"
+                };
+
+                roommateApplication.allocation = {
+                    status: "Unallocated"
+                };
+
+                return;
+            }
             const availableDoubleRooms = secondPreferenceHostel.doubleRooms.filter((room) => {
                 return room.beds[0].status === "Available" && room.beds[1].status === "Available"
             })
@@ -505,9 +576,18 @@ secondThirdYearApplications.forEach((application) => {
         const selectedHostel = hostels.find((hostel) => {
             return hostel.hostelId === application.hostelPreference1
         })
+        if (!selectedHostel) {
+
+            application.allocation = {
+                status: "Unallocated"
+            };
+
+            return;
+        }
         const availableDoubleRooms = selectedHostel.doubleRooms.filter((room) => {
             return room.beds[0].status === "Available" || room.beds[1].status === "Available"
         })
+
         const selectedRoom = availableDoubleRooms[0];
         if (selectedRoom) {
             let selectedBed
@@ -532,6 +612,14 @@ secondThirdYearApplications.forEach((application) => {
             const secondPreferenceHostel = hostels.find((hostel) => {
                 return hostel.hostelId === application.hostelPreference2
             })
+            if (!secondPreferenceHostel) {
+
+                application.allocation = {
+                    status: "Unallocated"
+                };
+
+                return;
+            }
             const availableDoubleRooms = secondPreferenceHostel.doubleRooms.filter((room) => {
                 return room.beds[0].status === "Available" || room.beds[1].status === "Available"
             })
@@ -555,9 +643,9 @@ secondThirdYearApplications.forEach((application) => {
                     bedNumber: selectedBed.bedNumber
                 }
             }
-            else{
-                application.allocation ={
-                    status : "Unallocated"
+            else {
+                application.allocation = {
+                    status: "Unallocated"
                 }
             }
         }
@@ -566,5 +654,7 @@ secondThirdYearApplications.forEach((application) => {
 
 });
 
-localStorage.setItem("hostelData",JSON.stringify(hostels))
-localStorage.setItem("hostelApplications",JSON.stringify(applications))
+localStorage.setItem("hostelData", JSON.stringify(hostels))
+localStorage.setItem("hostelApplications", JSON.stringify(applications))
+
+updateBedStats();
