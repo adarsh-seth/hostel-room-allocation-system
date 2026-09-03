@@ -290,8 +290,7 @@ form.addEventListener("submit", (event) => {
         )
         successMessage.style.display = "block";
 
-        // We will use it later to show application summary 
-        /*  const applicationSummary = document.getElementById('application-summary')
+       
 
         document.getElementById('summary-name').textContent = formData.get("fullName");
 
