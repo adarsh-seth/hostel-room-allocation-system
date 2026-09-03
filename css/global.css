@@ -11,3 +11,23 @@ html{
 body{
     background:#F8FAFC;
 }
+
+
+.btn {
+
+    border: 1px solid transparent;
+    border-radius: 2rem;
+    padding: 1rem 3rem;
+    color: white;
+    background: #1E3A8A;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #2563EB;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 30px rgba(37, 99, 235, .3);
+}

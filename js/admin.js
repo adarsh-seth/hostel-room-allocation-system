@@ -1,6 +1,7 @@
 const totalCount = document.getElementById('total-count');
 const applicationContainer = document.getElementById('applications-container');
 const searchValue = document.getElementById('search-id');
+const runAllocationButton = document.getElementById("run-allocation");
 
 const savedApplications = localStorage.getItem("hostelApplications");
 
@@ -112,4 +113,8 @@ function getStatusClass(status) {
         return "status-rejected";
     }
 }
+
+runAllocationButton.addEventListener("click", () => {
+    allocateRooms();
+});
 
