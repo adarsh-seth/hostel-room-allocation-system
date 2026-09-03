@@ -2,7 +2,12 @@ const year = document.getElementById('year')
 const roommateSection = document.getElementById('roommate-section')
 const roommateRoll = document.getElementById('roommate-roll')
 
+const duplicateError = document.getElementById("duplicate-error");
+const closeError = document.getElementById("close-error");
 
+closeError.addEventListener("click", () => {
+    duplicateError.style.display = "none";
+});
 
 const hostelPreference1 = document.getElementById("hostelPreference1");
 const hostelPreference2 = document.getElementById("hostelPreference2");
@@ -258,6 +263,25 @@ form.addEventListener("submit", (event) => {
 
         const savedApplication = localStorage.getItem("hostelApplications")
         const applications = savedApplication ? JSON.parse(savedApplication) : [];
+
+        const alreadySubmitted = applications.some((application) => {
+            return application.rollNumber === rollNo.value;
+        })
+        if (alreadySubmitted) {
+
+            duplicateError.style.display = "flex";
+
+            duplicateError.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            setTimeout(() => {
+                duplicateError.style.display = "none";
+            }, 5000);
+
+            return;
+        }
         applications.push(applicationData);
 
         localStorage.setItem(

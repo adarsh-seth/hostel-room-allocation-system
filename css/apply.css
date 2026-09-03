@@ -159,3 +159,51 @@ main {
     display: none;
     text-align: center;
 }
+.duplicate-error {
+    display: none;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px 18px;
+    margin-bottom: 20px;
+    border: 1px solid #f5c2c7;
+    border-radius: 10px;
+    background-color: #f8d7da;
+    color: #842029;
+    position: relative;
+    animation: errorSlide 0.3s ease;
+}
+
+.duplicate-error .error-icon {
+    font-size: 20px;
+}
+
+.duplicate-error strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.duplicate-error p {
+    margin: 0;
+    font-size: 14px;
+}
+
+#close-error {
+    margin-left: auto;
+    border: none;
+    background: transparent;
+    color: #842029;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+@keyframes errorSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

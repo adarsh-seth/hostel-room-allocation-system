@@ -12,7 +12,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
     </style>
-   
+
 </head>
 
 <body>
@@ -32,6 +32,15 @@
         </div>
 
         <form action="" class="application-form">
+
+            <div id="duplicate-error" class="duplicate-error">
+                <span class="error-icon">⚠</span>
+                <div>
+                    <strong>Application Already Submitted</strong>
+                    <p>An application with this roll number already exists.</p>
+                </div>
+                <button type="button" id="close-error">&times;</button>
+            </div>
 
 
             <section class="form-section">
@@ -126,14 +135,14 @@
                     <div class="form-group">
                         <label for="hostelPreference1">Hostel Preference 1</label>
                         <select id="hostelPreference1" name="hostelPreference1" required>
-                            <option value="" disabled selected>Select your hostel</option> 
+                            <option value="" disabled selected>Select your hostel</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="hostelPreference2">Hostel Preference 2</label>
                         <select id="hostelPreference2" name="hostelPreference2" required>
-                            <option value="" disabled selected>Select your hostel</option> 
+                            <option value="" disabled selected>Select your hostel</option>
                         </select>
                     </div>
 
@@ -207,7 +216,7 @@
             </p>
 
         </form>
-        
+
     </main>
     <footer class="footer">
         <div class="container">
