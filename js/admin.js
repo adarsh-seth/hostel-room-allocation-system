@@ -14,7 +14,7 @@ totalCount.textContent = applications.length;
 function renderApplications(applicationsToRender) {
     applicationContainer.innerHTML = "";
 
-    applicationsToRender.forEach(application => {
+    [...applicationsToRender].reverse().forEach(application => {
 
         const statusClass = getStatusClass(application.status);
 

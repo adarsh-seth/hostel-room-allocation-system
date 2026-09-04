@@ -241,11 +241,12 @@ rollNo.addEventListener("blur", validateRollNumber)
 
 const form = document.querySelector(".application-form");
 const successMessage = document.getElementById('success-message');
+const applicationIdDisplay = document.getElementById("application-id");
 
 
 
 form.addEventListener("submit", (event) => {
-    
+
     if (!validateRollNumber() || !validatePhoneNumber() || !validateEmail() || !validateRoommateRollNumber()) {
         event.preventDefault()
     }
@@ -288,13 +289,15 @@ form.addEventListener("submit", (event) => {
             "hostelApplications",
             JSON.stringify(applications)
         )
-        successMessage.style.display = "block";
 
+        successMessage.style.display = "block";
+        applicationIdDisplay.textContent = applicationId;
+        document.getElementById("summary-name").textContent = formData.get("fullName");
        
 
-        document.getElementById('summary-name').textContent = formData.get("fullName");
-
-        applicationSummary.style.display = "block" 
+        form.reset();
+        updateRoommateSection();
+        updateReceiptField();
     }
 
 
