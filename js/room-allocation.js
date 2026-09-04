@@ -5,173 +5,6 @@ const availableBeds = document.getElementById("available-beds");
 const occupiedBeds = document.getElementById("occupied-beds");
 
 
-const defaultHostels = [
-    {
-        hostelId: "ABH",
-        hostelNumber: 10,
-        doubleRoomCount: 10,
-        doubleRooms: []
-    },
-
-    {
-        hostelId: "BH-3",
-        hostelNumber: 3,
-        doubleRoomCount: 10,
-        doubleRooms: []
-    },
-
-    {
-        hostelId: "BH-4",
-        hostelNumber: 4,
-        doubleRoomCount: 10,
-        doubleRooms: []
-    },
-
-    {
-        hostelId: "BH-8",
-        hostelNumber: 8,
-        doubleRoomCount: 10,
-        doubleRooms: []
-    },
-
-    {
-        hostelId: "BH-1",
-        hostelNumber: 1,
-        doubleRoomCount: 10,
-        doubleRooms: []
-    },
-
-    {
-        hostelId: "BH-6",
-        hostelNumber: 6,
-        doubleRoomCount: 10,
-        singleRoomCount: 15,
-        doubleRooms: [],
-        singleRooms: []
-    },
-
-    {
-        hostelId: "BH-7",
-        hostelNumber: 7,
-        doubleRoomCount: 10,
-        singleRoomCount: 15,
-        doubleRooms: [],
-        singleRooms: []
-    },
-
-    {
-        hostelId: "BH-9",
-        hostelNumber: 9,
-        doubleRoomCount: 10,
-        singleRoomCount: 15,
-        doubleRooms: [],
-        singleRooms: []
-    },
-
-
-    {
-        hostelId: "GH-3",
-        hostelNumber: 13,
-        doubleRoomCount: 10,
-        doubleRooms: []
-    },
-
-    {
-        hostelId: "GH-5",
-        hostelNumber: 15,
-        doubleRoomCount: 10,
-        doubleRooms: []
-    },
-
-    {
-        hostelId: "GH-1",
-        hostelNumber: 11,
-        doubleRoomCount: 10,
-        singleRoomCount: 15,
-        doubleRooms: [],
-        singleRooms: []
-    },
-
-    {
-        hostelId: "GH-2",
-        hostelNumber: 12,
-        doubleRoomCount: 10,
-        singleRoomCount: 15,
-        doubleRooms: [],
-        singleRooms: []
-    },
-
-    {
-        hostelId: "GH-4",
-        hostelNumber: 14,
-        doubleRoomCount: 10,
-        singleRoomCount: 15,
-        doubleRoomCount: 10,
-        singleRoomCount: 15,
-        doubleRooms: [],
-        singleRooms: []
-    }
-]
-
-const savedHostels = localStorage.getItem("hostelData");
-
-window.hostels = savedHostels
-    ? JSON.parse(savedHostels)
-    : defaultHostels;
-
-
-if (!savedHostels) {
-    window.hostels.forEach((hostel) => {
-        for (let index = 1; index <= hostel.doubleRoomCount; index++) {
-            const roomNumber = hostel.hostelNumber * 100 + index;
-
-            const doubleRoom =
-            {
-                roomNumber: roomNumber,
-                beds: []
-            }
-            hostel.doubleRooms.push(doubleRoom)
-
-            for (let bedIndex = 1; bedIndex <= 2; bedIndex++) {
-
-                const bedNumber = bedIndex;
-
-                const bed = {
-                    bedNumber: bedNumber,
-                    status: "Available",
-                    applicationId: null
-                }
-                doubleRoom.beds.push(bed)
-            }
-
-        }
-        if (hostel.singleRoomCount > 0) {
-            for (let index = hostel.doubleRoomCount + 1; index <= hostel.singleRoomCount + hostel.doubleRoomCount; index++) {
-
-                const roomNumber = hostel.hostelNumber * 100 + index;
-
-                const singleRoom =
-                {
-                    roomNumber: roomNumber,
-                    beds: []
-                }
-                hostel.singleRooms.push(singleRoom)
-
-                for (let bedIndex = 1; bedIndex <= 1; bedIndex++) {
-
-                    const bedNumber = bedIndex;
-
-                    const bed = {
-                        bedNumber: bedNumber,
-                        status: "Available",
-                        applicationId: null
-                    }
-                    singleRoom.beds.push(bed)
-                }
-            }
-        }
-    })
-}
 
 
 function updateBedStats() {
@@ -232,73 +65,62 @@ updateBedStats();
 // })
 // bed.status = "Occupied"
 // updateBedStats()
+function renderRooms(roomArray,hostelCard) {
+    roomArray.forEach((room) => {
+            const roomCard = document.createElement('div');
+            roomCard.classList.add("room-card")
+            roomCard.innerHTML = `
+        <h5>Room ${room.roomNumber}</h5>
+        <div class="beds-container"></div>
+         `
+            hostelCard.appendChild(roomCard)
+
+            const bedsContainer = roomCard.querySelector(".beds-container");
 
 
-// function renderHostels() {
-//     hostelsContainer.innerHTML = "";
+            room.beds.forEach((bed) => {
 
-//     window.hostels.forEach((hostel) => {
-//         const hostelCard = document.createElement("div");
-//         hostelCard.classList.add("hostel-card");
-//         hostelCard.innerHTML = `
-//     <h4>Hostel ${hostel.hostelNumber}</h4>
-//     `
-//         hostelsContainer.appendChild(hostelCard);
+                const bedCard = document.createElement("div");
 
-//         hostel.rooms.forEach((room) => {
-//             const roomCard = document.createElement('div');
-//             roomCard.classList.add("room-card")
-//             roomCard.innerHTML = `
-//         <h5>Room ${room.roomNumber}</h5>
-//         <div class="beds-container"></div>
-//          `
-//             hostelCard.appendChild(roomCard)
+                let statusClass;
 
-//             const bedsContainer = roomCard.querySelector(".beds-container");
+                if (bed.status === "Available") {
+                    statusClass = "status-available";
+                } else {
+                    statusClass = "status-occupied";
+                }
 
+                bedCard.classList.add("bed-card");
+                bedCard.classList.add(statusClass);
 
-//             room.beds.forEach((bed) => {
+                bedCard.innerHTML = `
+                <h5>Bed ${bed.bedNumber}</h5>
+                <h5>${bed.status}</h5>
+            `;
 
-//                 const bedCard = document.createElement("div");
+                bedsContainer.appendChild(bedCard);
+            })
+        })
+}
 
-//                 let statusClass;
+function renderHostels() {
+    hostelsContainer.innerHTML = "";
 
-//                 if (bed.status === "Available") {
-//                     statusClass = "status-available";
-//                 } else {
-//                     statusClass = "status-occupied";
-//                 }
+    window.hostels.forEach((hostel) => {
+        const hostelCard = document.createElement("div");
+        hostelCard.classList.add("hostel-card");
+        hostelCard.innerHTML = `
+    <h4>Hostel ${hostel.hostelId}</h4>
+    `
+        hostelsContainer.appendChild(hostelCard);
 
-//                 bedCard.classList.add("bed-card");
-//                 bedCard.classList.add(statusClass);
+        renderRooms(hostel.doubleRooms,hostelCard)
 
-//                 bedCard.innerHTML = `
-//                 <h5>Bed ${bed.bedNumber}</h5>
-//                 <h5>${bed.status}</h5>
-//             `;
-
-//                 bedsContainer.appendChild(bedCard);
-//             })
-//         })
+        if (hostel.singleRoomCount > 0) {
+            renderRooms(hostel.singleRooms,hostelCard)
+        }
 
 
-//     })
-// }
-// renderHostels()
-
-const savedApplications = localStorage.getItem('hostelApplications')
-
-const applications = savedApplications ? JSON.parse(savedApplications) : []
-
-const approvedApplications = applications.filter((application) => {
-    return application.status === "Approved"
-})
-
-
-
-
-
-localStorage.setItem("hostelData", JSON.stringify(window.hostels))
-localStorage.setItem("hostelApplications", JSON.stringify(applications))
-
-updateBedStats();
+    })
+}
+renderHostels();
