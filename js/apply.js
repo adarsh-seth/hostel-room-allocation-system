@@ -246,6 +246,7 @@ const successMessage = document.getElementById('success-message');
 
 
 form.addEventListener("submit", (event) => {
+    
     if (!validateRollNumber() || !validatePhoneNumber() || !validateEmail() || !validateRoommateRollNumber()) {
         event.preventDefault()
     }
@@ -294,7 +295,7 @@ form.addEventListener("submit", (event) => {
 
         document.getElementById('summary-name').textContent = formData.get("fullName");
 
-        applicationSummary.style.display = "block" */
+        applicationSummary.style.display = "block" 
     }
 
 

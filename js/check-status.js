@@ -8,7 +8,7 @@ const resultStatus = document.getElementById('result-status')
 
 statusBtn.addEventListener("click", () => {
     const savedApplication = localStorage.getItem("hostelApplications")
-    
+
     if (savedApplication === null) {
         statusResult.style.display = "block";
         statusResult.textContent = "No Application found. Please submit a hostel application first."
@@ -17,7 +17,7 @@ statusBtn.addEventListener("click", () => {
         const applications = JSON.parse(savedApplication);
 
         const application = applications.find((application) => {
-           return application.applicationId === enteredApplicationId.value;
+            return application.applicationId === enteredApplicationId.value;
         })
 
         if (application) {
@@ -57,6 +57,43 @@ statusBtn.addEventListener("click", () => {
 
             document.getElementById("result-status").textContent =
                 application.status;
+
+
+            if (application.allocation) {
+                 statusResult.innerHTML += `
+                    <div class="allocation-details">
+                        <div class="status-header">
+                            <h3>Room Allocation</h3>
+                            <p>Your room has been allocated successfully.</p>
+                        </div>
+
+                        <div class="status-details">
+                            <div class="status-item">
+                                <span>Hostel</span>
+                                <strong>${application.allocation.hostelId}</strong>
+                            </div>
+
+                            <div class="status-item">
+                                <span>Room No.</span>
+                                <strong>${application.allocation.roomNumber}</strong>
+                            </div>
+
+                            <div class="status-item">
+                                <span>Bed No.</span>
+                                <strong>${application.allocation.bedNumber}</strong>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+            }
+            else if(application.status === "Approved") {
+                statusResult.innerHTML += `
+                    <div class="allocation-pending">
+                        <p>Room allocation is pending.</p>
+                    </div>
+                `;
+            }
         }
         else {
             statusResult.style.display = "block";
