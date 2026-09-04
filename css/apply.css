@@ -281,3 +281,7 @@ main {
         transform: translateY(0);
     }
 }
+
+.btn:active {
+    transform: scale(0.95);
+}

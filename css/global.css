@@ -26,9 +26,10 @@ body{
 
 .btn:hover {
     background: #2563EB;
-
     transform: translateY(-3px);
-
     box-shadow: 0 12px 30px rgba(37, 99, 235, .3);
+}
+.btn:active {
+    transform: scale(0.95);
 }
 

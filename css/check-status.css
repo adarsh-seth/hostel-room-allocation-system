@@ -84,6 +84,9 @@ main {
 .btn {
     width: 60%;
 }
+.status-button:active {
+    transform: scale(0.95);
+}
 
 .status-result {
     display: none;
