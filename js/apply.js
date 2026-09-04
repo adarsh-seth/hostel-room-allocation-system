@@ -84,7 +84,6 @@ document.querySelectorAll('input[name="gender"]').forEach((gender) => {
 hostelPreference1.addEventListener("change", () => {
 
     const selectedHostel = hostelPreference1.value;
-    console.log(selectedHostel);
 
     Array.from(hostelPreference2.options).forEach((option) => {
 

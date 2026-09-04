@@ -4,9 +4,6 @@ const totalBeds = document.getElementById("total-beds");
 const availableBeds = document.getElementById("available-beds");
 const occupiedBeds = document.getElementById("occupied-beds");
 
-
-
-
 function updateBedStats() {
 
     let total = 0

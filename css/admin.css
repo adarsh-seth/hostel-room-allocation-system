@@ -121,16 +121,16 @@ main {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     outline: none;
 }
-.application-card{
-    display: flex;
-    margin-bottom: 1rem;
+.application-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
     width: 700px;
+    margin-bottom: 1rem;
     background: #FFFFFF;
     border: 1px solid #E5E7EB;
     border-radius: 1.2rem;
     padding: 2rem 3rem;
-    justify-content: space-between;
-    gap: 5rem;
+    gap: 2rem;
 }
 .card-info{
     line-height: 1.5;
@@ -145,7 +145,6 @@ main {
     font-size: 1rem;
     color: #111827;
 }
-
 
 .card-status label {
     padding-right: .6rem;
@@ -211,3 +210,62 @@ main {
 }
 
 
+
+.allocation-details {
+    grid-column: 1 / -1;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 1.5rem;
+    margin-top: .5rem;
+}
+
+.status-header h3 {
+    font-size: 1.1rem;
+    color: #111827;
+    margin-bottom: .3rem;
+}
+
+.status-header p {
+    color: #6B7280;
+    font-size: .9rem;
+    margin-bottom: 1.2rem;
+}
+
+.status-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.status-item {
+    background: #F8FAFC;
+    border: 1px solid #E5E7EB;
+    border-radius: .8rem;
+    padding: .9rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+
+.status-item span {
+    font-size: .8rem;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.status-item strong {
+    font-size: 1.1rem;
+    color: #111827;
+}
+
+.allocation-pending {
+    grid-column: 1 / -1;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 1rem;
+    margin-top: .5rem;
+}
+
+.allocation-pending p {
+    color: #B45309;
+    font-size: .9rem;
+}

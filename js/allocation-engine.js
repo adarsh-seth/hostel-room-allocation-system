@@ -416,5 +416,4 @@ function allocateRooms() {
     localStorage.setItem("hostelData", JSON.stringify(window.hostels));
     localStorage.setItem("hostelApplications", JSON.stringify(applications));
 
-
 }
