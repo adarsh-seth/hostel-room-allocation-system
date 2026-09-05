@@ -285,3 +285,179 @@ main {
 .btn:active {
     transform: scale(0.95);
 }
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 0 1.5rem;
+    cursor: pointer;
+}
+
+/* ============================
+   TABLET (max-width: 1024px)
+============================ */
+@media (max-width: 1024px) {
+
+    .application-form {
+        max-width: 90%;
+        padding: 2.5rem 2.5rem;
+    }
+
+    .application-header h2 {
+        font-size: 2.1rem;
+    }
+
+    #header-description {
+        font-size: 1.15rem;
+        padding: 0 1rem;
+    }
+
+    .academic-grid,
+    .accommodation-grid {
+        gap: 1.5rem 2rem;
+    }
+}
+
+/* ============================
+   MOBILE / SMALL TABLET (max-width: 768px)
+============================ */
+@media (max-width: 768px) {
+       .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(30, 58, 138, 0.97);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 1rem 0;
+
+        transform: translateY(-15px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        will-change: transform, opacity;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .nav-links a {
+        padding: 1rem 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Drop the blur on mobile — expensive to repaint on open/close */
+    .nav {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(30, 58, 138, 0.97);
+    }
+    .application-form {
+        width: 92%;
+        max-width: 100%;
+        padding: 2rem 1.5rem;
+        border-radius: 1rem;
+    }
+
+    .application-header h2 {
+        font-size: 1.8rem;
+        padding: 1.5rem 1rem 0.5rem;
+    }
+
+    #header-description {
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+        padding: 0 1rem;
+    }
+
+    .form-section h2 {
+        font-size: 1.3rem;
+        padding-bottom: 0.8rem;
+        margin-bottom: 1.8rem;
+    }
+
+    /* Stack academic & accommodation grids */
+    .academic-grid,
+    .accommodation-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .gender-options {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .fee-options {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .duplicate-error {
+        flex-wrap: wrap;
+    }
+
+    .success-message {
+        width: 92%;
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* ============================
+   MOBILE (max-width: 600px)
+============================ */
+@media (max-width: 600px) {
+
+    .application-header h2 {
+        font-size: 1.5rem;
+    }
+
+    #header-description {
+        font-size: 0.9rem;
+    }
+
+    .application-form {
+        padding: 1.5rem 1.2rem;
+    }
+
+    .form-section h2 {
+        font-size: 1.15rem;
+    }
+
+    .form-section label {
+        font-size: 0.9rem;
+    }
+
+    .declaration label {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.9rem 1.5rem;
+    }
+
+    .application-id strong {
+        font-size: 1.1rem;
+        word-break: break-all;
+    }
+}

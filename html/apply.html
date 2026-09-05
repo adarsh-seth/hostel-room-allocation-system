@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student-Application-Page</title>
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/variable.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/apply.css">
+   <link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/variable.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/apply.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
     </style>
@@ -18,12 +19,16 @@
 <body>
     <nav class="nav">
         <div class="logo">Hostel Hub</div>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="apply.html">Apply</a>
             <a href="check-status.html">Check Status</a>
+             <a href="room-allocation.html">Room Allocation</a>
             <a href="admin.html">Admin</a>
         </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
     </nav>
     <main>
         <div class="application-header">
@@ -113,17 +118,6 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="academic-year">Academic Year</label>
-                        <select id="academic-year" name="academicYear" required>
-                            <option value="" disabled selected>Select academic year</option>
-                            <option value="2026-27">2026–27</option>
-                            <option value="2027-28">2027–28</option>
-                            <option value="2028-29">2028–29</option>
-                            <option value="2029-30">2029–30</option>
-                        </select>
-                    </div>
-
                 </div>
 
             </section>
@@ -148,15 +142,6 @@
 
                 </div>
 
-                <div class="form-group">
-                    <label for="additional-requirements">
-                        Additional Requirements
-                    </label>
-
-                    <textarea id="additional-requirements" name="additionalRequirements" rows="4"
-                        placeholder="Mention any additional accommodation requirements (optional)">
-            </textarea>
-                </div>
 
             </section>
 
@@ -264,7 +249,7 @@
 
         </div>
     </footer>
-
+    <script src="../js/nav.js"></script>
     <script src="../js/apply.js"></script>
 </body>
 

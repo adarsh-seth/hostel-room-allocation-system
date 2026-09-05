@@ -499,7 +499,7 @@
     font-size: 1.1rem;
     display: flex;
     gap: .80rem;
-    justify-items: center;
+    justify-content: center;
 
 }
 
@@ -557,7 +557,7 @@
     font-size: 0.80rem;
     display: flex;
     gap: .80rem;
-    justify-items: center;
+    justify-content: center;
 }
 .footer-contact i{
     color:#3B82F6;
@@ -611,4 +611,269 @@
     color: white;
     width: 100%;
     padding: 1rem;
+}
+
+
+
+/* ============================
+   NAV TOGGLE (hidden on desktop)
+============================ */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 0 1.5rem;
+    cursor: pointer;
+}
+
+/* ============================
+   TABLET (max-width: 1024px)
+============================ */
+@media (max-width: 1024px) {
+
+    .hero-heading {
+        font-size: 2.7rem;
+    }
+
+    .hero-description {
+        font-size: 1.05rem;
+    }
+
+    .hero-container {
+        gap: 2rem;
+    }
+
+    .heading {
+        font-size: 2.6rem;
+    }
+
+    .description {
+        font-size: 1.2rem;
+    }
+
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .stats-card-container {
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .stats-card {
+        width: 45%;
+        min-width: 220px;
+    }
+
+    .about-container {
+        gap: 2.5rem;
+    }
+
+    .about-container img {
+        max-width: 450px;
+        height: 380px;
+    }
+
+    .about-content h2 {
+        font-size: 2.2rem;
+    }
+
+    .footer-top {
+        flex-wrap: wrap;
+        height: auto;
+        row-gap: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .footer-brand,
+    .footer-links,
+    .footer-contact,
+    .footer-social {
+        width: 45%;
+        max-width: 45%;
+    }
+}
+
+/* ============================
+   MOBILE / SMALL TABLET (max-width: 768px)
+============================ */
+@media (max-width: 768px) {
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(30, 58, 138, 0.97);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 1rem 0;
+
+        transform: translateY(-15px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        will-change: transform, opacity;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .nav-links a {
+        padding: 1rem 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Drop the blur on mobile — expensive to repaint on open/close */
+    .nav {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(30, 58, 138, 0.97);
+    }
+
+    /* Hero stacks */
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-highlights {
+        justify-content: center;
+    }
+
+    .hero-img {
+        order: -1;
+    }
+
+    /* About stacks */
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-container img {
+        max-width: 100%;
+        height: 320px;
+    }
+
+    .about-container ul li {
+        justify-content: center;
+    }
+
+    .about-content .btn {
+        align-self: center;
+    }
+
+    .footer-brand,
+    .footer-links,
+    .footer-contact,
+    .footer-social {
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer-brand h4,
+    .footer-contact span {
+        justify-content: center;
+    }
+}
+/* ============================
+   MOBILE (max-width: 600px)
+============================ */
+@media (max-width: 600px) {
+
+    .hero {
+        padding: 3rem 0;
+    }
+
+    .hero-heading {
+        font-size: 2.1rem;
+    }
+
+    .hero-badge {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .heading {
+        font-size: 2rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+
+    .features-card {
+        min-height: auto;
+        padding: 2rem 1.5rem;
+    }
+
+    .stats-card {
+        width: 100%;
+    }
+
+    .stats-card h3 {
+        font-size: 2rem;
+    }
+
+    .about-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .about-content p {
+        font-size: 1rem;
+    }
+
+    .logo {
+        padding: 1rem 1.5rem;
+        font-size: 1.2rem;
+    }
 }

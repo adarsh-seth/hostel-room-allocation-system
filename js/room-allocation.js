@@ -4,6 +4,14 @@ const totalBeds = document.getElementById("total-beds");
 const availableBeds = document.getElementById("available-beds");
 const occupiedBeds = document.getElementById("occupied-beds");
 
+const hostelFilter = document.getElementById("hostel-filter");
+
+const savedApplications = localStorage.getItem("hostelApplications");
+
+const applications = savedApplications
+    ? JSON.parse(savedApplications)
+    : [];
+
 function updateBedStats() {
 
     let total = 0
@@ -50,74 +58,103 @@ function updateBedStats() {
 
 updateBedStats();
 
+function getApplicationById(applicationId) {
 
-// const hostel = window.hostels.find((hostel) => {
-//     return hostel.hostelNumber === 8;
-// })
-// const room = hostel.rooms.find((room) => {
-//     return room.roomNumber === 801;
-// })
-// const bed = room.beds.find((bed) => {
-//     return bed.bedNumber === 1;
-// })
-// bed.status = "Occupied"
-// updateBedStats()
-function renderRooms(roomArray,hostelCard) {
+    return applications.find((application) => {
+        return application.applicationId === applicationId;
+    });
+
+}
+
+
+function renderRooms(roomArray, roomsGrid) {
     roomArray.forEach((room) => {
-            const roomCard = document.createElement('div');
-            roomCard.classList.add("room-card")
-            roomCard.innerHTML = `
+        
+        const roomCard = document.createElement('div');
+        roomCard.classList.add("room-card")
+        roomCard.innerHTML = `
         <h5>Room ${room.roomNumber}</h5>
         <div class="beds-container"></div>
          `
-            hostelCard.appendChild(roomCard)
+        roomsGrid.appendChild(roomCard)
 
-            const bedsContainer = roomCard.querySelector(".beds-container");
+        const bedsContainer = roomCard.querySelector(".beds-container");
 
 
-            room.beds.forEach((bed) => {
+        room.beds.forEach((bed) => {
 
-                const bedCard = document.createElement("div");
+            const bedCard = document.createElement("div");
 
-                let statusClass;
+            let statusClass;
 
-                if (bed.status === "Available") {
-                    statusClass = "status-available";
-                } else {
-                    statusClass = "status-occupied";
-                }
+            if (bed.status === "Available") {
+                statusClass = "status-available";
+            } else {
+                statusClass = "status-occupied";
+            }
 
-                bedCard.classList.add("bed-card");
-                bedCard.classList.add(statusClass);
+            bedCard.classList.add("bed-card");
+            bedCard.classList.add(statusClass);
 
-                bedCard.innerHTML = `
+            bedCard.innerHTML = `
                 <h5>Bed ${bed.bedNumber}</h5>
                 <h5>${bed.status}</h5>
             `;
 
-                bedsContainer.appendChild(bedCard);
-            })
+            bedsContainer.appendChild(bedCard);
         })
+    })
 }
 
 function renderHostels() {
     hostelsContainer.innerHTML = "";
 
+    const selectedHostel = hostelFilter.value;
+
     window.hostels.forEach((hostel) => {
+        if (selectedHostel !== "all" &&
+            hostel.hostelId !== selectedHostel) {
+            return;
+        }
         const hostelCard = document.createElement("div");
         hostelCard.classList.add("hostel-card");
         hostelCard.innerHTML = `
     <h4>Hostel ${hostel.hostelId}</h4>
+    <div class="rooms-grid"></div>
     `
         hostelsContainer.appendChild(hostelCard);
-
-        renderRooms(hostel.doubleRooms,hostelCard)
+        const roomsGrid = hostelCard.querySelector(".rooms-grid");
+        renderRooms(hostel.doubleRooms, roomsGrid);
 
         if (hostel.singleRoomCount > 0) {
-            renderRooms(hostel.singleRooms,hostelCard)
+            renderRooms(hostel.singleRooms, roomsGrid);
         }
 
 
     })
 }
+
+function populateHostelFilter() {
+
+    window.hostels.forEach((hostel) => {
+
+        const option = document.createElement("option");
+
+        option.value = hostel.hostelId;
+        option.textContent = hostel.hostelId;
+
+        hostelFilter.appendChild(option);
+    });
+}
+
+populateHostelFilter();
 renderHostels();
+
+
+hostelFilter.addEventListener("change", () => {
+    renderHostels();
+});
+
+yearFilter.addEventListener("change", () => {
+    renderHostels();
+});

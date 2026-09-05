@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
 }
 
 main {
@@ -66,29 +67,32 @@ main {
     color: #111827;
     border: 1px solid #E5E7EB;
     border-radius: 12px;
-    width: 500px;
+    width: 1200px;
     padding: 2rem;
  
 }
 
-.hostel-card {
+.rooms-grid {
     text-align: center;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     margin-bottom: 2rem;
     color: #111827;
     background: #FFFFFF;
     border: 1px solid #E5E7EB;
     border-radius: 1.2rem;
     padding: 1.5rem;
+    gap: .8rem;
 
 }
 .hostel-card h4{
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin-bottom: .8rem;
+    text-align: center;
 }
 
 .room-card {
+    
     background: #F8FAFC;
     color: #111827;
     border: 1px solid #E5E7EB;
@@ -103,7 +107,7 @@ main {
 }
 .beds-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: .8rem;
 }
 .bed-card {
@@ -115,6 +119,11 @@ main {
     border: 1px solid #BBF7D0;
     border-radius: .6rem;
     padding: .8rem;
+}
+.bed-card:only-child {
+    grid-column: 1 / -1;
+    width: 50%;
+    justify-self: center;
 }
 
 .status-available{
@@ -128,4 +137,170 @@ main {
     color: #b91c1c;
     border: 1px solid #FECACA;
 
+}
+.allocation-filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.filter-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    margin-bottom: 1rem;
+   
+}
+
+.filter-group label {
+    color: #374151;
+    font-weight: 500;
+}
+
+.filter-group select {
+    border: 1px solid #D1D5DB;
+    border-radius: .6rem;
+    padding: .55rem 2rem .55rem .8rem;
+    background: #FFFFFF;
+    color: #111827;
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    outline: none;
+}
+
+
+/* ============================
+   TABLET (max-width: 1024px)
+============================ */
+@media (max-width: 1024px) {
+
+    main {
+        padding: 1.5rem;
+    }
+
+    .allocation-header h4 {
+        font-size: 3rem;
+    }
+
+    .allocation-header p {
+        font-size: 1.2rem;
+    }
+
+    .allocation-summary {
+        width: 90%;
+        max-width: 500px;
+    }
+
+    .hostels-container {
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .rooms-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================
+   MOBILE / SMALL TABLET (max-width: 768px)
+============================ */
+@media (max-width: 768px) {
+
+    main {
+        padding: 1.2rem;
+    }
+
+    .allocation-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .allocation-header h4 {
+        font-size: 2.2rem;
+        margin: 0.5rem;
+    }
+
+    .allocation-header p {
+        font-size: 1.05rem;
+    }
+
+    .allocation-summary {
+        width: 100%;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .hostels-container {
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .rooms-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .beds-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .filter-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+    }
+}
+
+/* ============================
+   MOBILE (max-width: 600px)
+============================ */
+@media (max-width: 600px) {
+
+    .allocation-header h4 {
+        font-size: 1.7rem;
+    }
+
+    .allocation-header p {
+        font-size: 0.9rem;
+    }
+
+    .allocation-summary div span {
+        font-size: 1rem;
+    }
+
+    .allocation-summary div strong {
+        font-size: 1.4rem;
+    }
+
+    .hostels-container {
+        padding: 1rem;
+    }
+
+    .hostel-card h4 {
+        font-size: 1.3rem;
+    }
+
+    .room-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .beds-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+    }
+
+    .bed-card:only-child {
+        width: 100%;
+    }
+
+    .filter-group select {
+        width: 100%;
+    }
 }

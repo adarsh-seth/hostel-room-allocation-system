@@ -2,6 +2,9 @@ const totalCount = document.getElementById('total-count');
 const applicationContainer = document.getElementById('applications-container');
 const searchValue = document.getElementById('search-id');
 const runAllocationButton = document.getElementById("run-allocation");
+const runResetButton = document.getElementById("reset-btn");
+const loadDataButton = document.getElementById("load-btn");
+
 
 const savedApplications = localStorage.getItem("hostelApplications");
 
@@ -27,6 +30,8 @@ function renderApplications(applicationsToRender) {
                 <h3>${application.applicationId}</h3>
                 <p>${application.fullName}</p>
                 <p>${application.rollNumber}</p>
+                <p>Year: ${application.year}</p>
+        
                 <p>${application.email}</p>
                 <p>${application.phone}</p>
             </div>
@@ -166,3 +171,20 @@ runAllocationButton.addEventListener("click", () => {
     allocateRooms();
 });
 
+runResetButton.addEventListener("click", () => {
+    if(confirm("Are you sure you want to reset all demo data? This will remove all applications and room allocations. This action cannot be undone.")){
+        localStorage.removeItem("hostelApplications");
+        localStorage.removeItem("hostelData");
+        location.reload();
+    }
+})
+
+loadDataButton.addEventListener("click", () => {
+    console.log("Loading demo data...");
+    if(confirm("Are you sure you want to load demo data? This will overwrite any existing applications and room allocations. ")){
+        localStorage.setItem("hostelApplications", JSON.stringify(demoApplications));
+        localStorage.removeItem("hostelData");
+        location.reload();
+    }
+});
+        

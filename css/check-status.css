@@ -194,3 +194,79 @@ main {
     font-size: 1.1rem;
     color: #111827;
 }
+
+
+/* ============================
+   TABLET (max-width: 1024px)
+============================ */
+@media (max-width: 1024px) {
+
+    .status-card {
+        max-width: 90%;
+    }
+
+    .allocation-details .status-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================
+   MOBILE / SMALL TABLET (max-width: 768px)
+============================ */
+@media (max-width: 768px) {
+
+    main {
+        padding: 2rem 1rem;
+        min-height: calc(100vh - 70px);
+    }
+
+    .status-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 2rem 1.5rem;
+    }
+
+    .status-card h2 {
+        font-size: 1.6rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .allocation-details .status-details {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+}
+
+/* ============================
+   MOBILE (max-width: 600px)
+============================ */
+@media (max-width: 600px) {
+
+    .status-card {
+        padding: 1.5rem 1.2rem;
+        border-radius: 1rem;
+    }
+
+    .status-card h2 {
+        font-size: 1.4rem;
+    }
+
+    .status-description {
+        font-size: 0.85rem;
+    }
+
+    .allocation-details .status-details {
+        grid-template-columns: 1fr;
+    }
+
+    .allocation-details .status-item {
+        padding: 0.8rem;
+    }
+
+    .status-item strong {
+        font-size: 1rem;
+    }
+}
