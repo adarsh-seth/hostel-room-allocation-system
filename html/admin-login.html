@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login | Hostel Hub</title>
+     <link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/variable.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+    </style>
+</head>
+<body>
+    <main>
+        <div class="login-header">
+            <h2>Admin Login</h2>
+        </div>
+        <form action="">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="login-error" id="login-error">
+    Invalid email or password.
+</div>
+            <button class=" btn login-btn" type="submit">Login</button>
+            <a href="index.html" class="back-home">
+    <i class="fa-solid fa-arrow-left"></i>
+    Back to Home
+</a>
+        </form>
+    </main>
+    
+</body>
+</html>
