@@ -1,3 +1,7 @@
+if (sessionStorage.getItem("adminLoggedIn") !== "true") {
+    window.location.href = "admin-login.html"
+}
+
 const totalCount = document.getElementById('total-count');
 const applicationContainer = document.getElementById('applications-container');
 const searchValue = document.getElementById('search-id');
@@ -48,7 +52,7 @@ function renderApplications(applicationsToRender) {
             </div>
         `;
 
-        
+
         if (application.allocation?.status === "Allocated") {
 
             card.innerHTML += `
@@ -111,7 +115,7 @@ applicationContainer.addEventListener("change", (event) => {
         application.status = event.target.value
         const newStatusClass = getStatusClass(application.status)
 
-         event.target.classList.remove(
+        event.target.classList.remove(
             "status-submitted",
             "status-review",
             "status-approved",
@@ -138,7 +142,7 @@ function applyFilters() {
         return application.applicationId.includes(searchValue.value) && (statusFilter.value === application.status || statusFilter.value === "all")
     })
     applicationContainer.innerHTML = "";
-    if(filteredApplications.length === 0){
+    if (filteredApplications.length === 0) {
         const emptyCard = document.createElement('div')
         emptyCard.classList.add("empty-card")
         emptyCard.innerHTML = `
@@ -147,21 +151,21 @@ function applyFilters() {
 
         applicationContainer.appendChild(emptyCard);
     }
-    else{
-    renderApplications(filteredApplications)
+    else {
+        renderApplications(filteredApplications)
     }
 }
 
 function getStatusClass(status) {
     if (status === "Approved") {
         return "status-approved";
-    } 
+    }
     else if (status === "Under Review") {
         return "status-review";
-    } 
+    }
     else if (status === "Submitted") {
         return "status-submitted";
-    } 
+    }
     else {
         return "status-rejected";
     }
@@ -172,7 +176,7 @@ runAllocationButton.addEventListener("click", () => {
 });
 
 runResetButton.addEventListener("click", () => {
-    if(confirm("Are you sure you want to reset all demo data? This will remove all applications and room allocations. This action cannot be undone.")){
+    if (confirm("Are you sure you want to reset all demo data? This will remove all applications and room allocations. This action cannot be undone.")) {
         localStorage.removeItem("hostelApplications");
         localStorage.removeItem("hostelData");
         location.reload();
@@ -181,10 +185,10 @@ runResetButton.addEventListener("click", () => {
 
 loadDataButton.addEventListener("click", () => {
     console.log("Loading demo data...");
-    if(confirm("Are you sure you want to load demo data? This will overwrite any existing applications and room allocations. ")){
+    if (confirm("Are you sure you want to load demo data? This will overwrite any existing applications and room allocations. ")) {
         localStorage.setItem("hostelApplications", JSON.stringify(demoApplications));
         localStorage.removeItem("hostelData");
         location.reload();
     }
 });
-        
+

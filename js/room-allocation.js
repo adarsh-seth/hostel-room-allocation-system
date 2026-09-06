@@ -69,7 +69,7 @@ function getApplicationById(applicationId) {
 
 function renderRooms(roomArray, roomsGrid) {
     roomArray.forEach((room) => {
-        
+
         const roomCard = document.createElement('div');
         roomCard.classList.add("room-card")
         roomCard.innerHTML = `
@@ -155,6 +155,3 @@ hostelFilter.addEventListener("change", () => {
     renderHostels();
 });
 
-yearFilter.addEventListener("change", () => {
-    renderHostels();
-});

@@ -111,7 +111,7 @@ window.hostels = savedHostels
     : defaultHostels;
 
 
-    if (!savedHostels) {
+if (!savedHostels) {
     window.hostels.forEach((hostel) => {
         for (let index = 1; index <= hostel.doubleRoomCount; index++) {
             const roomNumber = hostel.hostelNumber * 100 + index;

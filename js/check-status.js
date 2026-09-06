@@ -60,7 +60,7 @@ statusBtn.addEventListener("click", () => {
 
 
             if (application.allocation) {
-                 statusResult.innerHTML += `
+                statusResult.innerHTML += `
                     <div class="allocation-details">
                         <div class="status-header">
                             <h3>Room Allocation</h3>
@@ -87,7 +87,7 @@ statusBtn.addEventListener("click", () => {
                 `;
 
             }
-            else if(application.status === "Approved") {
+            else if (application.status === "Approved") {
                 statusResult.innerHTML += `
                     <div class="allocation-pending">
                         <p>Room allocation is pending.</p>

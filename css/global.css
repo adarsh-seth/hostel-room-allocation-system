@@ -1,15 +1,15 @@
-.container{
+.container {
     width: 90%;
     max-width: 1300px;
     margin: 0 auto;
 }
 
-html{
+html {
     scroll-behavior: smooth;
 }
 
-body{
-    background:#F8FAFC;
+body {
+    background: #F8FAFC;
 }
 
 
@@ -29,7 +29,7 @@ body{
     transform: translateY(-3px);
     box-shadow: 0 12px 30px rgba(37, 99, 235, .3);
 }
+
 .btn:active {
     transform: scale(0.95);
 }
-

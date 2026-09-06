@@ -293,7 +293,7 @@ form.addEventListener("submit", (event) => {
         successMessage.style.display = "block";
         applicationIdDisplay.textContent = applicationId;
         document.getElementById("summary-name").textContent = formData.get("fullName");
-       
+
 
         form.reset();
         updateRoommateSection();

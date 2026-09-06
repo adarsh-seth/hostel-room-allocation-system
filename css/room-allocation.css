@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: "Montserrat", sans-serif;
@@ -6,28 +6,28 @@
 }
 
 main {
-    background: linear-gradient(
-        135deg,
-        #EFF6FF 0%,
-        #F8FAFC 45%,
-        #FFFFFF 100%
-    );
+    background: linear-gradient(135deg,
+            #EFF6FF 0%,
+            #F8FAFC 45%,
+            #FFFFFF 100%);
 
     min-height: 100vh;
     padding: 2rem;
 }
-.allocation-header{
+
+.allocation-header {
     text-align: center;
     margin-bottom: 4rem;
 }
 
-.allocation-header h4{
+.allocation-header h4 {
     color: #111827;
     text-align: center;
     font-size: 4rem;
     margin: 1rem;
 }
-.allocation-header p{
+
+.allocation-header p {
     font-size: 1.5rem;
     color: #2563EB;
 }
@@ -45,31 +45,34 @@ main {
     justify-content: space-between;
     margin-bottom: 3rem;
 }
-.allocation-summary div{
+
+.allocation-summary div {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: .5rem;
 }
-.allocation-summary div span{
-  font-size: 1.2rem;
-  color: #374151;
+
+.allocation-summary div span {
+    font-size: 1.2rem;
+    color: #374151;
 }
-.allocation-summary div strong{
-  font-size: 1.8rem;
-  color: #2563EB;
+
+.allocation-summary div strong {
+    font-size: 1.8rem;
+    color: #2563EB;
 }
 
 
 .hostels-container {
-     margin: 0 auto;
+    margin: 0 auto;
     background: #FFF;
     color: #111827;
     border: 1px solid #E5E7EB;
     border-radius: 12px;
     width: 1200px;
     padding: 2rem;
- 
+
 }
 
 .rooms-grid {
@@ -85,14 +88,15 @@ main {
     gap: .8rem;
 
 }
-.hostel-card h4{
+
+.hostel-card h4 {
     font-size: 1.6rem;
     margin-bottom: .8rem;
     text-align: center;
 }
 
 .room-card {
-    
+
     background: #F8FAFC;
     color: #111827;
     border: 1px solid #E5E7EB;
@@ -100,16 +104,19 @@ main {
     padding: 2rem 1.5rem;
     margin-bottom: 1rem;
 }
+
 .room-card h5 {
     color: #2563EB;
     margin-bottom: .8rem;
     text-align: center;
 }
+
 .beds-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: .8rem;
 }
+
 .bed-card {
     display: flex;
     flex-direction: column;
@@ -120,24 +127,27 @@ main {
     border-radius: .6rem;
     padding: .8rem;
 }
+
 .bed-card:only-child {
     grid-column: 1 / -1;
     width: 50%;
     justify-self: center;
 }
 
-.status-available{
+.status-available {
     background: #F0FDF4;
     color: #15803D;
     border: 1px solid #BBF7D0;
 
 }
-.status-occupied{
+
+.status-occupied {
     background: #FEF2F2;
     color: #b91c1c;
     border: 1px solid #FECACA;
 
 }
+
 .allocation-filters {
     display: flex;
     justify-content: center;
@@ -145,6 +155,7 @@ main {
     gap: 1rem;
     margin-bottom: 1rem;
 }
+
 .filter-group {
     display: flex;
     flex-direction: row;
@@ -152,7 +163,7 @@ main {
     justify-content: center;
     gap: .6rem;
     margin-bottom: 1rem;
-   
+
 }
 
 .filter-group label {

@@ -301,6 +301,7 @@ main {
 .reset-btn:active {
     transform: scale(0.95);
 }
+
 .load-btn {
     border: 1px solid #BFDBFE;
     border-radius: 2rem;
@@ -466,4 +467,9 @@ main {
     .status-item strong {
         font-size: 1rem;
     }
+}
+
+#admin-nav-link:hover {
+    color: red;
+    border-bottom: 2px solid red;
 }

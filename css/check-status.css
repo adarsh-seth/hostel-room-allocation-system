@@ -84,6 +84,7 @@ main {
 .btn {
     width: 60%;
 }
+
 .status-button:active {
     transform: scale(0.95);
 }
@@ -96,7 +97,8 @@ main {
     border-radius: 1.2rem;
     padding: 1.3rem;
 }
-.status-header{
+
+.status-header {
     margin-bottom: 1rem;
 }
 
