@@ -4,11 +4,12 @@ A responsive frontend-based Hostel Room Allocation System built with HTML, CSS, 
 
 ## 🚀 Live Demo
 
-[View Live Project](https://hostelhub-system.vercel.app/)
+🔗 https://hostelhub-system.vercel.app/
+
 
 ## 📸 Preview
 
-![Portfolio Preview](assets/preview.png)
+![Project Preview](/assets/preview.png)
 
 ## 📌 Overview
 
@@ -155,3 +156,5 @@ hostel-room-allocation-system/
 - GitHub: https://github.com/adarsh-seth
 - LinkedIn: https://www.linkedin.com/in/adarsh-seth/
 - Email: adarshseth999@gmail.com
+
+### Made with ❤️ by Adarsh Seth
