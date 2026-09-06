@@ -9,7 +9,7 @@ A responsive frontend-based Hostel Room Allocation System built with HTML, CSS, 
 
 ## 📸 Preview
 
-![Project Preview](/assets/preview.png)
+![Project Preview](assets/preview.png)
 
 ## 📌 Overview
 
