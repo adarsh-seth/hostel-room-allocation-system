@@ -1,0 +1,28 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/html/index.html"
+    },
+    {
+      "source": "/apply.html",
+      "destination": "/html/apply.html"
+    },
+    {
+      "source": "/admin.html",
+      "destination": "/html/admin.html"
+    },
+    {
+      "source": "/admin-login.html",
+      "destination": "/html/admin-login.html"
+    },
+    {
+      "source": "/check-status.html",
+      "destination": "/html/check-status.html"
+    },
+    {
+      "source": "/room-allocation.html",
+      "destination": "/html/room-allocation.html"
+    }
+  ]
+}
