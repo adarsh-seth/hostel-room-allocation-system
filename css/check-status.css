@@ -41,6 +41,7 @@ main {
 }
 
 .form-group input {
+    width: 100%;
     color: #374151;
     border: 1px solid #D1D5DB;
     border-radius: .6rem;
@@ -66,14 +67,6 @@ main {
     margin-bottom: 1rem;
 }
 
-.form-group input {
-    width: 100%;
-}
-
-.status-result {
-    display: none;
-}
-
 .status-button {
     margin-top: 1.2rem;
     display: flex;
@@ -83,10 +76,6 @@ main {
 
 .btn {
     width: 60%;
-}
-
-.status-button:active {
-    transform: scale(0.95);
 }
 
 .status-result {

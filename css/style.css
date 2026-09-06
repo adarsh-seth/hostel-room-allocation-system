@@ -106,51 +106,6 @@
 }
 
 .hero-img {
-
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    position: relative;
-}
-
-.hero-img img {
-
-    width: 100%;
-    max-width: 600px;
-    border-radius: 28px;
-    box-shadow:
-        0 25px 60px rgba(30, 58, 138, .18);
-    transition: .4s ease;
-}
-
-.hero-img img:hover {
-    transform: translateY(-8px);
-}
-
-.btn {
-
-    border: 1px solid transparent;
-    border-radius: 2rem;
-    padding: 1rem 3rem;
-    color: white;
-    background: #1E3A8A;
-    transition: 0.3s ease-in-out;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background: #2563EB;
-
-    transform: translateY(-3px);
-
-    box-shadow: 0 12px 30px rgba(37, 99, 235, .3);
-}
-
-.btn:active {
-    transform: scale(0.95);
-}
-
-.hero-img {
     display: flex;
     flex: 1;
     justify-content: center;
@@ -163,10 +118,15 @@
     object-fit: cover;
     width: 100%;
     max-width: 550px;
+    transition: 0.3s ease;
     height: auto;
     display: block;
 
 
+}
+
+.hero-img img:hover {
+    transform: translateY(-8px);
 }
 
 /* Features Section  */
@@ -419,11 +379,6 @@
 .about-content .btn {
     align-self: flex-start;
 }
-
-
-/* ============================
-   NAV TOGGLE (hidden on desktop)
-============================ */
 
 
 /* ============================
