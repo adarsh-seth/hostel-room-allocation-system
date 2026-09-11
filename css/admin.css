@@ -300,6 +300,7 @@ main {
 
 .reset-btn:active {
     transform: scale(0.95);
+    
 }
 
 .load-btn {
@@ -323,9 +324,7 @@ main {
     transform: scale(0.95);
 }
 
-/* ============================
-   TABLET (max-width: 1024px)
-============================ */
+
 @media (max-width: 1024px) {
 
     main {
